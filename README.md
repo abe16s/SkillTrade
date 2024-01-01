@@ -1,6 +1,7 @@
 # Web-Group-Project
 Web Development Course Group Project 2023/24 G.C 
-# Title: Brothers Furniture; A Product Ordering Web Application for a Furniture Sales Company 
+# Title
+Brothers Furniture; A Product Ordering Web Application for a Furniture Sales Company 
 ## Description
 Brothers furniture is a web application for a furniture sales company that does door-to-door delivery of ordered furniture. Our application will enable the vendor to upload description for various furniture products and see ordered products with their details such as location, date of shippment and other buyer information. Moreover, buyers shall be able to surf the store gallery to choose their suited furniture and order the product.  
 
