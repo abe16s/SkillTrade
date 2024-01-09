@@ -1,1 +1,1 @@
-export * from './isadmin.guard';
+export * from './auth.guards';

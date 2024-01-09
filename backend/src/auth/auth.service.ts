@@ -4,6 +4,7 @@ import { AuthDto } from './dto';
 import * as argon from 'argon2';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { JwtService } from '@nestjs/jwt';
+import * as jwtEx from 'jsonwebtoken'
 
 @Injectable()
 export class AuthService {
@@ -12,17 +13,31 @@ export class AuthService {
     private jwt: JwtService,
   ) {}
   async signup(dto: AuthDto) {
+    const hash = await argon.hash(dto.password);
+    let model_type;
+    let data;
+    if (dto.role === 'customer') {
+      model_type = this.prisma.user;
+      data = {
+        fullName: dto.fullName,
+        phone: dto.phone,
+        role: dto.role,
+        email: dto.email,
+        password: hash,
+      };
+    } else if (dto.role === 'technician') {
+      model_type = this.prisma.technician;
+      data = {
+        fullName: dto.fullName,
+        phone: dto.phone,
+        role: dto.role,
+        email: dto.email,
+        password: hash,
+      };
+    }
     try {
-      const hash = await argon.hash(dto.password);
-      console.log(hash);
-      const user = await this.prisma.user.create({
-        data: {
-          fullName: dto.fullName,
-          phone: dto.phone,
-          role: dto.role,
-          email: dto.email,
-          password: hash,
-        },
+      const user = await model_type.create({
+        data: data,
         select: {
           fullName: true,
           phone: true,
@@ -43,20 +58,29 @@ export class AuthService {
   }
 
   async signin(dto: AuthDto) {
-    const user = await this.prisma.user.findUnique({
-      where: {
-        email: dto.email,
-      },
-    });
+    let user;
+    if (dto.role === 'customer') {
+      user = await this.prisma.user.findUnique({
+        where: {
+          email: dto.email,
+        },
+      });
+    } else if (dto.role === 'technician') {
+      user = await this.prisma.technician.findUnique({
+        where: {
+          email: dto.email,
+        },
+      });
+    }
 
     if (!user) {
-      throw new ForbiddenException('Credetials are not Correct!');
+      throw new ForbiddenException('Credetials are not Correct! here');
     }
 
     const pwMatches = await argon.verify(user.password, dto.password);
 
     if (!pwMatches) {
-      throw new ForbiddenException('Credetials are no correct!');
+      throw new ForbiddenException('Credetials are not correct!');
     }
 
     return this.tokenGenerate(user.id, user.fullName, user.role, user.email);
@@ -73,5 +97,18 @@ export class AuthService {
       expiresIn: '120m',
       secret: 'brothers',
     });
+  }
+
+  validateToken(token: string): any {
+    try {
+      const decodedToken = jwtEx.verify(token, 'brothers');
+      console.log(decodedToken);
+      if (decodedToken) {
+        return decodedToken;
+      }
+    } catch (error) {
+      console.error('JWT verification error:', error.message);
+      return false;
+    }
   }
 }
