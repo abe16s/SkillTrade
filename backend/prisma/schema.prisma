@@ -21,6 +21,7 @@ model User {
 
   createdAt DateTime  @default(now())
   lastLogin DateTime?
+
 }
 
 model Technician {
@@ -52,4 +53,5 @@ model Booking{
   problemDescription String @db.Text
   status String   
   @@unique([customerId, technicianId, serviceDate])
+  // user User @relation(fields: [customerId], references: [id])
 }
