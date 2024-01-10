@@ -9,6 +9,7 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
+  app.enableCors();
   await app.listen(9000);
 }
 bootstrap();

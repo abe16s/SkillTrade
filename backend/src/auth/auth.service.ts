@@ -57,7 +57,7 @@ export class AuthService {
     }
   }
 
-  async signin(dto: AuthDto) {
+  async signin(dto: any) {
     let user;
     if (dto.role === 'customer') {
       user = await this.prisma.user.findUnique({
@@ -86,17 +86,22 @@ export class AuthService {
     return this.tokenGenerate(user.id, user.fullName, user.role, user.email);
   }
 
-  tokenGenerate(userId: number, fullName: string, role: string, email: string) {
+  async tokenGenerate(userId: number, fullName: string, role: string, email: string) {
     const payload = {
       sub: userId,
       fullName,
       email,
       role,
     };
-    return this.jwt.signAsync(payload, {
+    let token: any = await this.jwt.signAsync(payload, {
       expiresIn: '120m',
       secret: 'brothers',
     });
+    console.log(token)
+    return {
+      access_token: token,
+      role
+    }
   }
 
   validateToken(token: string): any {
