@@ -45,7 +45,8 @@ export class BookingsService {
     }
 
     async createBooking(booking: CreateBookingDto){
-      const result = this.prisma.booking.findUnique({
+      console.log("hello00")
+      const result = await this.prisma.booking.findUnique({
             where : {
                 customerId_technicianId_serviceDate: {
                     customerId: booking.customerId,
@@ -55,6 +56,7 @@ export class BookingsService {
                 
             }
       })
+      console.log(result)
       if (!result){
         const newBooking = await this.prisma.booking.create({
               data: {
@@ -70,11 +72,14 @@ export class BookingsService {
             return newBooking
         }
         
-        
+      return {}
     }
 
     async updateBooking(id: number, updatedBooking: UpdateBookingDto){
-      updatedBooking.serviceDate =new Date(updatedBooking.serviceDate)
+      if ("serviceDate" in updatedBooking) {
+        updatedBooking.serviceDate =new Date(updatedBooking.serviceDate)
+      }
+      
       await this.prisma.booking.update({
         where: {
             id:id,
