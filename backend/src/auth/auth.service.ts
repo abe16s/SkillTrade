@@ -14,8 +14,8 @@ export class AuthService {
   ) {}
   async signup(dto: AuthDto) {
     const hash = await argon.hash(dto.password);
-    let model_type;
-    let data;
+    let model_type: any;
+    let data: any;
     if (dto.role === 'customer') {
       model_type = this.prisma.user;
       data = {
@@ -32,6 +32,11 @@ export class AuthService {
         phone: dto.phone,
         role: dto.role,
         email: dto.email,
+        skills: dto.skills,
+        experience: dto.experience,
+        educationLevel: dto.educationLevel,
+        availableLocation: dto.availableLocation,
+        additionalBio: dto.additionalBio,
         password: hash,
       };
     }

@@ -21,6 +21,7 @@ model User {
 
   createdAt DateTime  @default(now())
   lastLogin DateTime?
+
 }
 
 model Technician {
@@ -40,4 +41,17 @@ model Technician {
 
   createdAt DateTime  @default(now())
   lastLogin DateTime?
+}
+
+model Booking{
+  id Int @id @default( autoincrement())
+  customerId Int 
+  technicianId Int
+  createdDate DateTime @default(now())
+  serviceDate DateTime  
+  serviceNeeded String @db.Text
+  problemDescription String @db.Text
+  status String   
+  @@unique([customerId, technicianId, serviceDate])
+  // user User @relation(fields: [customerId], references: [id])
 }
