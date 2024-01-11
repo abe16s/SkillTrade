@@ -2,6 +2,7 @@ import { IsEnum, IsOptional, IsNumber, IsString, IsNotEmpty } from "class-valida
 enum Status {
     DECLINED = 'declined',
     SERVICED = 'serviced',
+    ACCEPTED = 'accepted',
     PENDING = 'pending',
   }
 export class CreateBookingDto{
