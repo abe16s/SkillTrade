@@ -9,13 +9,13 @@ export class TechnicianController {
     constructor(private readonly technicianService: TechnicianService) { }
 
     @Get()
-    @UseGuards(AuthGuard('jwt'))
+    // @UseGuards(AuthGuard('jwt'))
     findAllTechnicianProfiles(){
         return this.technicianService.findAllTechnicianProfiles()
     }
 
     @Get(':id')
-    @UseGuards(AuthGuard('jwt'), IsTechnicianGuard)
+    @UseGuards(AuthGuard('jwt'))
     findTechnicianProfile(@Param('id', ParseIntPipe) id: number){
         return this.technicianService.findTechnicianProfile(id)
     }
