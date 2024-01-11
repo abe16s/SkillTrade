@@ -50,6 +50,7 @@ export class AuthService {
           email: true,
         },
       });
+      console.log(user)
       return user;
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
@@ -102,7 +103,6 @@ export class AuthService {
       expiresIn: '120m',
       secret: 'brothers',
     });
-    console.log(token)
     return {
       access_token: token,
       role

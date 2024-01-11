@@ -1,82 +1,162 @@
-var authCustomerAPI = 'localhost:3000/users';
-var authTechnicianAPI = 'localhost:3000/users';
-var signUpAPI2 = 'http://localhost:9000/trader/signup';
-var signInAPI2 = 'http://localhost:9000/trader/signin';
-// var user = authenticateUser();
+let signUpAPI = 'http://localhost:9000/trader/signup';
+let signInAPI = 'http://localhost:9000/trader/signin';
+let userAPI = 'http://localhost:9000/user';
 //signUp - create account
 //As a Customer
 function signUpCustomer() {
-    console.log("Hello")
-    var fullNameTemp = "Abenezer Seifu";
-    var emailTemp = "abenezer1234@gmail.com";
-    var phoneTemp = 912561209;
-    var passwordTemp = "123";
-    var roleTemp = "customer";
-    fetch(signUpAPI2, {
+    let fullNameTemp = document.getElementById("customer-fullName");
+    let emailTemp = document.getElementById("customer-email");
+    let phoneTemp = document.getElementById("customer-phone");
+    let passwordTemp = document.getElementById("customer-password");
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!(fullNameTemp.checkValidity() && phoneTemp.checkValidity() && passwordTemp.checkValidity())) {
+        return;
+    }
+    if (!(emailRegex.test(emailTemp.value) && emailTemp.checkValidity())) {
+        alert("Please enter a valid email!");
+        return;
+    }
+    fetch(signUpAPI, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ "fullName": fullNameTemp, "email": emailTemp, "phone": phoneTemp, "password": passwordTemp, "role": roleTemp })
+        body: JSON.stringify({ "fullName": fullNameTemp.value, "email": emailTemp.value, "phone": phoneTemp.value, "password": passwordTemp.value, "role": "customer" })
     })
         .then(function (response) { return response.json(); })
         .then(function (data) {
+        if ("error" in data) {
+            alert("A user with that email already exists! Please try Login");
+            console.log(data);
+            return;
+        }
         console.log(data);
-        // signInUser(emailTemp, passwordTemp)
+        alert("Successfully registered");
+        if (emailTemp && passwordTemp) {
+            signInUser(emailTemp.value, passwordTemp.value, "customer");
+        }
     })
         .catch(function (error) { return console.error("Error signing up customer!", error); });
 }
 //As a Technician
 function signUpTechnician() {
-    var fullNameTemp = "Abenezer Seifu";
-    var emailTemp = "abenezer123@gmail.com";
-    var phoneTemp = "0912324544";
-    var passwordTemp = "123";
-    var skillsTemp = "Electrician, Dish Network Installer";
-    var experienceTemp = "More than 3 Years";
-    var educationLevelTemp = "BSc. in Electrical Engineering";
-    var availableLocationTemp = "Addis Ababa, Gulele & Arada sub city";
-    var additionalBioTemp = "Exceptional in my performance I have been working on installing and maintaining electrical equipments from small house holds to big construction sites";
-    fetch(signUpAPI2, {
+    let fullNameTemp = document.getElementById("technician-fullName");
+    let emailTemp = document.getElementById("technician-email");
+    let phoneTemp = document.getElementById("technician-phone");
+    let passwordTemp = document.getElementById("technician-password");
+    let skillsTemp = document.getElementById("technician-skills");
+    let experienceTemp = document.getElementById("technician-experience");
+    let educationLevelTemp = document.getElementById("technician-educationLevel");
+    let availableLocationTemp = document.getElementById("technician-availableLocation");
+    let additionalBioTemp = document.getElementById("technician-additionalBio");
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!(fullNameTemp.checkValidity() && phoneTemp.checkValidity() && passwordTemp.checkValidity() && experienceTemp.checkValidity() && availableLocationTemp.checkValidity())) {
+        return;
+    }
+    if (!(emailRegex.test(emailTemp.value) && emailTemp.checkValidity())) {
+        alert("Please enter a valid email!");
+        return;
+    }
+    fetch(signUpAPI, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({"role": "technician",  "fullName": fullNameTemp, "email": emailTemp, "phone": phoneTemp, "password": passwordTemp, "skills": skillsTemp, "experience": experienceTemp, "educationLevel": educationLevelTemp, "availableLocation": availableLocationTemp, "additionalBio": additionalBioTemp })
+        body: JSON.stringify({ "role": "technician", "fullName": fullNameTemp.value, "email": emailTemp.value, "phone": phoneTemp.value, "password": passwordTemp.value, "experience": experienceTemp.value, "availableLocation": availableLocationTemp.value, "additionalBio": additionalBioTemp.value })
     })
         .then(function (response) { return response.json(); })
         .then(function (data) {
+        if ("error" in data) {
+            alert("A user with that email already exists! Please try Login");
+            console.log(data);
+            return;
+        }
         console.log(data);
-        // signInUser(emailTemp, passwordTemp);
+        alert("Successfully registered")
+        if (emailTemp && passwordTemp) {
+            signInUser(emailTemp.value, passwordTemp.value, "technician");
+        }
     })
         .catch(function (error) { return console.error("Error signing up customer!", error); });
 }
 //signIn
-function signInUser() {
-    var emailTemp = "abenezer123@gmail.com";
-    var passwordTemp = "123";
-    fetch(signInAPI2, {
+function signInUser(email, password, role) {
+    fetch(signInAPI, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({"role": "technician" , "email": emailTemp, "password": passwordTemp })
+        body: JSON.stringify({ "role": role, "email": email, "password": password })
     })
         .then(function (response) { return response.json(); })
         .then(function (data) {
-        // if (user == "Technician") {
-        //     console.log("Redirect to Technician Page");
-        // }
-        // else {
-        //     console.log("Redirect to Customer Page");
-        // }
+        if ("error" in data) {
+            alert("Incorrect credentials / email, password or role is incorrect");
+            console.log(data);
+            return;
+        }
         console.log(data);
+        localStorage.setItem('jwtToken', data.access_token);
+        localStorage.setItem("userRole", data.role);
+        if (data.role == "technician") {
+            console.log("Redirect to Technician Page");
+        }
+        else {
+            console.log("Redirect to Customer Page");
+        }
     })
         .catch(function (error) { return console.error("Error signing in user!", error); });
 }
-
-document.body.style.background = "red";
-var btn = document.getElementById("hi");
-if (btn) {
-    btn.addEventListener("click", signInUser);
+let updatedProfileChanges = { "email": "abc@com.com", "phone": 923823 };
+//Update profile on server
+function updateProfile(user) {
+    let updateUrl = "".concat(userAPI, "/").concat(6);
+    fetch(updateUrl, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': "Bearer ".concat(localStorage.getItem('jwtToken'))
+        },
+        body: JSON.stringify(updatedProfileChanges),
+    })
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+        console.log(data);
+    })
+        .catch(function (error) { return console.error("Error updating profile!", error); });
+}
+// Manipulate DOM
+let customerBtn = document.getElementById("customer-signup");
+if (customerBtn) {
+    customerBtn.addEventListener("click", signUpCustomer);
+}
+let technicianBtn = document.getElementById("technician-signup");
+if (technicianBtn) {
+    technicianBtn.addEventListener("click", signUpTechnician);
+}
+let loginBtn = document.getElementById("login-btn");
+if (loginBtn) {
+    loginBtn.addEventListener("click", function () {
+        let emailTemp = document.getElementById("login-email");
+        let passwordTemp = document.getElementById("login-password");
+        let roleTemp = "";
+        let userType = document.getElementsByName('login-user-type');
+        let isAnySelected = false;
+        for (let i = 0; i < userType.length; i++) {
+            if (userType[i].checked) {
+                roleTemp = userType[i].value;
+                isAnySelected = true;
+                break;
+            }
+        }
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!(passwordTemp.checkValidity() && isAnySelected)) {
+            return;
+        }
+        if (!(emailRegex.test(emailTemp.value) && emailTemp.checkValidity())) {
+            alert("Please enter a valid email!");
+            return;
+        }
+        signInUser(emailTemp.value, passwordTemp.value, roleTemp);
+    });
 }

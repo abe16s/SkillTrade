@@ -1,25 +1,26 @@
 /* eslint-disable prettier/prettier */
-import { IsEmail, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsEmail, IsOptional, IsString } from "class-validator";
 
-export class AuthDto {
+export class TechnicianDto {
    
     @IsString()
-    @IsNotEmpty()
+    @IsOptional()
     fullName: string;
 
     @IsString()
-    phone: number;
+    @IsOptional()
+    phone: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     role: string;
 
     @IsEmail()
-    @IsNotEmpty()
+    @IsOptional()
     email: string;
 
     @IsString()
-    @IsNotEmpty()
+    @IsOptional()
     password: string;
 
     @IsString()
