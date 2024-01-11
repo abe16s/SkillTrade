@@ -11,32 +11,33 @@ export class BookingsController {
     constructor(private readonly bookingsService: BookingsService) { }
     
     @Get('technician/:id')
-    @UseGuards(AuthGuard('jwt'), IsTechnicianGuard)
+    // @UseGuards(AuthGuard('jwt'), IsTechnicianGuard)
     findAllTechnicianBookings(@Param('id', ParseIntPipe) id: number){
         return this.bookingsService.findAllTechnicianBookings(id)
     }
 
     @Get('customer/:id')
-    @UseGuards(AuthGuard('jwt'), IsCustomerGuard)
+    // @UseGuards(AuthGuard('jwt'), IsCustomerGuard)
     findAllCustomerBookings(@Param('id', ParseIntPipe) id: number){
         return this.bookingsService.findAllCustomerBookings(id)
     }
 
 
     @Post()
-    @UseGuards(AuthGuard('jwt'), IsCustomerGuard)
+    // @UseGuards(AuthGuard('jwt'), IsCustomerGuard)
     createBooking(@Body(ValidationPipe) booking: CreateBookingDto){
+        console.log("hello")
         return this.bookingsService.createBooking(booking)
     }
 
     @Patch(':id')
-    @UseGuards(AuthGuard('jwt'))
+    // @UseGuards(AuthGuard('jwt'))
     updateBooking(@Param('id', ParseIntPipe) id: number, @Body(ValidationPipe) bookingUpdate: UpdateBookingDto){
         return this.bookingsService.updateBooking(id, bookingUpdate)
     }
 
     @Delete(':id')
-    @UseGuards(AuthGuard('jwt'), IsCustomerGuard)
+    // @UseGuards(AuthGuard('jwt'), IsCustomerGuard)
     deleteBooking(@Param('id', ParseIntPipe) id: number){
         return this.bookingsService.deleteBooking(id)
     }

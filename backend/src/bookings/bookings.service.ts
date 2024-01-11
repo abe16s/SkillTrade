@@ -54,7 +54,6 @@ export class BookingsService {
                 
             }
       })
-      console.log(result)
       if (!result){
         const newBooking = await this.prisma.booking.create({
               data: {
