@@ -1,19 +1,20 @@
-var bookingsAPI = 'http://localhost:9000/bookings';
-var technicianBookingsAPI = 'http://localhost:9000/bookings/technician';
-var customerBookingsAPI = 'http://localhost:9000/bookings/customer';
-var addNewBooking = document.getElementById("new-booking");
-var bookingsParent = document.getElementById("bookings");
-var userRole = authenticateUser();
+"use strict";
+const bookingsAPI = 'http://localhost:9000/bookings';
+const technicianBookingsAPI = 'http://localhost:9000/bookings/technician';
+const customerBookingsAPI = 'http://localhost:9000/bookings/customer';
+const addNewBooking = document.getElementById("new-booking");
+const bookingsParent = document.getElementById("bookings");
+const userRole = authenticateUser();
 function authenticateUser() { return "Technician"; }
 ;
-var tempCustomer = {
+let tempCustomer = {
     id: 3,
     fullName: "Abenezer Seifu",
     email: "abenezer@gmail.com",
     phone: "0936127755",
     password: ""
 };
-var tempTechnician = {
+let tempTechnician = {
     id: 7,
     fullName: "Abebe Kebede",
     email: "AbeKebe@gmail.com",
@@ -28,140 +29,147 @@ var tempTechnician = {
 //Create Booking
 //Create HTML tag for booking
 function createBooking(booking, technician, customer) {
-    var bookingDiv = document.createElement("div");
+    const bookingDiv = document.createElement("div");
     bookingDiv.classList.add("booking-" + booking.id);
-    var bookingInfoDiv = document.createElement("div");
+    const bookingInfoDiv = document.createElement("div");
     bookingInfoDiv.classList.add("booking");
     bookingDiv.appendChild(bookingInfoDiv);
-    var role = customer;
+    let role = customer;
     if (userRole == "customer") {
-        var editButton = document.createElement("button");
+        const editButton = document.createElement("button");
         editButton.innerText = "Edit";
         bookingDiv.appendChild(editButton);
-        var saveButton = document.createElement("button");
+        const saveButton = document.createElement("button");
         saveButton.innerText = "Save Changes";
         bookingDiv.appendChild(saveButton);
-        var deleteButton = document.createElement("button");
+        const deleteButton = document.createElement("button");
         deleteButton.innerText = "Save Changes";
         bookingDiv.appendChild(deleteButton);
     }
-    else if (userRole == "Technician") {
+    else if (userRole == "technician") {
         role = technician;
-        var acceptButton = document.createElement("button");
+        const acceptButton = document.createElement("button");
         acceptButton.innerText = "Accept";
         bookingDiv.appendChild(acceptButton);
-        var declineButton = document.createElement("button");
+        const declineButton = document.createElement("button");
         declineButton.innerText = "Decline";
         bookingDiv.appendChild(declineButton);
-        var servicedButton = document.createElement("button");
+        const servicedButton = document.createElement("button");
         servicedButton.innerText = "Serviced";
         bookingDiv.appendChild(servicedButton);
     }
-    var bookingInfo = "<h3>".concat(booking.serviceNeeded, "</h3>\n                        <div class=\"technician-info\">\n                            <h4>Booked with<h4>\n                            <p>Name: ").concat(role.fullName, "</p>\n                            <p>E-Mail: ").concat(role.email, "</p>\n                            <p>Phone No: ").concat(role.phone, "</p>\n                        </div>\n                        <p>Problem description: ").concat(booking.problemDescription, "</p>\n                        <p>Service date: ").concat(booking.serviceDate, "</p>\n                        <p>Location: ").concat(booking.serviceLocation, "<p>\n                        <p>Status<p>");
+    let bookingInfo = `<h3>${booking.serviceNeeded}</h3>
+                        <div class="technician-info">
+                            <h4>Booked with<h4>
+                            <p>Name: ${role.fullName}</p>
+                            <p>E-Mail: ${role.email}</p>
+                            <p>Phone No: ${role.phone}</p>
+                        </div>
+                        <p>Problem description: ${booking.problemDescription}</p>
+                        <p>Service date: ${booking.serviceDate}</p>
+                        <p>Location: ${booking.serviceLocation}<p>
+                        <p>Status<p>`;
     bookingInfoDiv.innerHTML = bookingInfo;
     return bookingDiv;
 }
 //Post booking on server
 function postBookingToServer() {
-    var bookedByTemp = 11;
-    var bookedForTemp = 12;
-    var serviceDateTemp = new Date();
-    var serviceNeededTemp = "Electric Lightning installation";
-    var problemDescriptionTemp = " I want full electric installation on 5 rooms house with all electric appliances being installed like sockets, switches and bulbs etc";
-    var serviceLocationTemp = "Addis Ababa, Gulele";
+    let bookedByTemp = 11;
+    let bookedForTemp = 12;
+    let serviceDateTemp = new Date();
+    let serviceNeededTemp = "Electric Lightning installation";
+    let problemDescriptionTemp = " I want full electric installation on 5 rooms house with all electric appliances being installed like sockets, switches and bulbs etc";
+    let serviceLocationTemp = "Addis Ababa, Gulele";
     fetch(bookingsAPI, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
         },
-        body: JSON.stringify({ "customerId": bookedByTemp, "technicianId": bookedForTemp, "serviceDate": serviceDateTemp, "serviceNeeded": serviceNeededTemp, "problemDescription": problemDescriptionTemp})
+        body: JSON.stringify({ "customerId": bookedByTemp, "technicianId": bookedForTemp, "serviceDate": serviceDateTemp, "serviceNeeded": serviceNeededTemp, "problemDescription": problemDescriptionTemp })
     })
-        .then(function (response) { return response.json(); })
-        .then(function (data) {
+        .then((response) => response.json())
+        .then((data) => {
         console.log(data);
         // createBooking(data, tempTechnician, tempCustomer);
     })
-        .catch(function (error) { return console.error("Error adding booking!", error); });
+        .catch((error) => console.error("Error adding booking!", error));
 }
 //Read bookings
-//Get all bookings - **outdated
-function readAllBookingsFromServer() {
-    fetch(bookingsAPI)
-        .then(function (response) { return response.json(); })
-        .then(function (data) {
-        
-        console.log(data[i].id, data[i].design);
-    })
-        .catch(function (error) { return console.error("Error fetching bookings:", error); });
-}
-
-
 //Get bookings specific to technician
 function readBookingsOfTechnicianFromServer(technician) {
-    var technicianURL = `${technicianBookingsAPI}/${3}`;
-    fetch(technicianURL)
-        .then(function (response) { return response.json(); })
-        .then(function (data) {
-            console.log(data);
-            // createBooking(data, tempTechnician, tempCustomer);
+    const technicianURL = `${technicianBookingsAPI}/${3}`;
+    fetch(technicianURL, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+        }
     })
-        .catch(function (error) { return console.error("Error fetching bookings:", error); });
+        .then((response) => response.json())
+        .then((data) => {
+        console.log(data);
+        // createBooking(data, tempTechnician, tempCustomer);
+    })
+        .catch((error) => console.error("Error fetching bookings:", error));
 }
 //Get bookings specific to customer
 function readBookingsOfCustomerFromServer(customer) {
-    var customerURL =  `${customerBookingsAPI}/${5}`;
-    fetch(customerURL)
-    .then(function (response) { return response.json(); })
-    .then(function (data) {    
-        console.log(data);
+    const customerURL = `${customerBookingsAPI}/${5}`;
+    fetch(customerURL, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+        }
     })
-        .catch(function (error) { return console.error("Error fetching bookings:", error); });
+        .then((response) => response.json())
+        .then((data) => {
+        console.log(data);
+        // createBooking(data, tempTechnician, tempCustomer);
+    })
+        .catch((error) => console.error("Error fetching bookings:", error));
 }
 //Update booking
 //Update booking on html
 function updateBooking(booking) {
-    var bookingToBeUpdated = document.getElementById("");
+    let bookingToBeUpdated = document.getElementById("");
     if (bookingToBeUpdated) {
         bookingToBeUpdated.innerHTML = createBooking(booking, tempTechnician, tempCustomer).innerHTML;
     }
 }
-
-
-var updatedBookingChanges = {"serviceDate": "2030-01-10", "serviceNeeded": "Wha'ever"};
+let updatedBookingChanges = { "serviceDate": "2030-01-10", "serviceNeeded": "Wha'ever" };
 //Update booking on server
 function updateBookingOnServer(booking) {
-    var updateUrl = `${bookingsAPI}/${6}`;
+    const updateUrl = `${bookingsAPI}/${6}`;
     fetch(updateUrl, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
         },
         body: JSON.stringify(updatedBookingChanges),
     })
-        .then(function (response) { return response.json(); })
-        .then(function (data) {
+        .then((response) => response.json())
+        .then((data) => {
         console.log(data);
     })
-        .catch(function (error) { return console.error("Error updating booking!", error); });
+        .catch((error) => console.error("Error updating booking!", error));
 }
 //Delete booking
 function deleteBookingFromServer(booking) {
-    var deleteUrl = `${bookingsAPI}/${1}`;
-    var bookingToBeDeleted = document.getElementById("");
+    const deleteUrl = `${bookingsAPI}/${1}`;
+    let bookingToBeDeleted = document.getElementById("");
     fetch(deleteUrl, {
         method: "DELETE",
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+        }
     })
-        .then(function (response) { return response.json(); })
-        .then(function (data) {
+        .then((response) => response.json())
+        .then((data) => {
         console.log(data);
         if (bookingToBeDeleted) {
             bookingToBeDeleted.remove();
         }
     })
-        .catch(function (error) { return console.error("Error deleting booking!", error); });
-}
-document.body.style.background = "green";
-var btn = document.getElementById("hi");
-if (btn) {
-    btn.addEventListener("click", postBookingToServer);
+        .catch((error) => console.error("Error deleting booking!", error));
 }
