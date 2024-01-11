@@ -1,4 +1,4 @@
-import { IsEnum, IsOptional, IsNumber, IsNotEmpty } from "class-validator";
+import { IsEnum, IsOptional, IsNumber, IsString, IsNotEmpty } from "class-validator";
 enum Status {
     DECLINED = 'declined',
     SERVICED = 'serviced',
@@ -15,15 +15,21 @@ export class CreateBookingDto{
     @IsNotEmpty({ message: 'Date cannot be empty' })
     serviceDate: Date;
 
+    @IsString()
     @IsNotEmpty({ message: 'Cannot be empty' })
     serviceNeeded: string;
 
+    @IsString()
     @IsNotEmpty({ message: 'Cannot be empty' })
     problemDescription: string;
 
     @IsOptional()
     @IsEnum(Status, {message: 'Status is not valid'})
     status: Status;
+
+    @IsOptional()
+    @IsString()
+    serviceLocation: string;
 
 
 }
