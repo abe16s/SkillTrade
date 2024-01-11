@@ -50,8 +50,8 @@ function signUpTechnician() {
     let availableLocationTemp = document.getElementById("technician-availableLocation");
     let additionalBioTemp = document.getElementById("technician-additionalBio");
     let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!(fullNameTemp.checkValidity() && phoneTemp.checkValidity() && passwordTemp.checkValidity() && experienceTemp.checkValidity() && availableLocationTemp.checkValidity())) {
-        return;
+    if (!(fullNameTemp.checkValidity() && phoneTemp.checkValidity() && passwordTemp.checkValidity() && skillsTemp.checkValidity() && experienceTemp.checkValidity() && educationLevelTemp.checkValidity() && availableLocationTemp.checkValidity())) {
+            return;
     }
     if (!(emailRegex.test(emailTemp.value) && emailTemp.checkValidity())) {
         alert("Please enter a valid email!");
@@ -62,7 +62,7 @@ function signUpTechnician() {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ "role": "technician", "fullName": fullNameTemp.value, "email": emailTemp.value, "phone": phoneTemp.value, "password": passwordTemp.value, "experience": experienceTemp.value, "availableLocation": availableLocationTemp.value, "additionalBio": additionalBioTemp.value })
+        body: JSON.stringify({ "role": "technician", "fullName": fullNameTemp.value, "email": emailTemp.value, "phone": phoneTemp.value, "password": passwordTemp.value, "skills": skillsTemp.value, "experience": experienceTemp.value, "educationLevel": educationLevelTemp.value, "availableLocation": availableLocationTemp.value, "additionalBio": additionalBioTemp.value })
     })
         .then(function (response) { return response.json(); })
         .then(function (data) {
@@ -98,6 +98,7 @@ function signInUser(email, password, role) {
         console.log(data);
         localStorage.setItem('jwtToken', data.access_token);
         localStorage.setItem("userRole", data.role);
+        localStorage.setItem("userId", data.userId);
         if (data.role == "technician") {
             console.log("Redirect to Technician Page");
         }
