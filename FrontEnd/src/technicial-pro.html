@@ -4,24 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
-    <title>Document</title>
+    <title>Technician-pro</title>
   </head>
   <body>
+    <nav>
+      <input id="nav-toggle" type="checkbox" />
+      <img src="img/logo.jpg" alt="logo" class="logo" />
+      <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="find_tec.html">Find Technicians</a></li>
+        <li class="btn"><a href="login.html">Login</a></li>
+      </ul>
+      <label for="nav-toggle" class="icon-burger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </label>
+    </nav>
     <div class="profile-container">
-      <h1 class="title">technician profile</h1>
+      <h1 class="title">Technician Profile</h1>
+
       <div class="profile-info">
-        <div class="profile-info">
-          <div class="profile-details">
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Profile Picture"
-              class="profile-pic"
-            />
-            <div class="info">
-              <h2>technician Information</h2>
-              <p>Name: John Doe</p>
-              <p>Email: john@example.com</p>
-            </div>
+        <div class="profile-details">
+          <img
+            src="img/logo-tech.png"
+            alt="Profile Picture"
+            class="profile-pic"
+          />
+          <div class="info">
+            <h2>Technician Information</h2>
+            <p><strong>Name</strong>: John Doe</p>
+            <p><strong>Email</strong>: john.doe@example.com</p>
+            <p><strong>Phone</strong> : +1 123-456-7890</p>
+            <p><strong>Skills</strong> : dish technician</p>
+            <p><strong>Experience</strong> : 5 years</p>
+            <p><strong>Education Level</strong> : Bachelor's Degree</p>
+            <p><strong>Available Location</strong> : Anywhere</p>
+            <button type="submit" class="btn-update-profile">
+              Update Profile
+            </button>
           </div>
         </div>
 
@@ -29,8 +50,7 @@
           <h2 style="text-align: center">booked to you</h2>
           <div class="tecntians">
             <div>
-              <h3>Mamo Demsew</h3>
-              <h5>Specialty: Dish Network technician</h5>
+              <h3>john</h3>
               <h5>Phone:+25184678397</h5>
               <h5>Email:mamodemsew@email.com</h5>
             </div>
@@ -46,14 +66,46 @@
           </div>
         </div>
 
-        <textarea name="additionalBio" placeholder="Additional Bio"></textarea>
-        <button type="submit" class="btn-update-profile">Update Profile</button>
         <div class="booking-buttons">
           <button class="edit-button">Accept</button>
-          <button class="save-button"></button>
+          <button class="save-button">Serviced</button>
           <button class="cancel-button">Decline</button>
         </div>
       </div>
     </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img class="logo" src="img/logo.jpg" alt="SkillTrade Hub" />
+            <p>Your go-to platform for skilled trades!</p>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="find_tec.html">Find Technicians</a></li>
+            </ul>
+          </div>
+          <div class="footer-social">
+            <h4>Connect with Us</h4>
+            <ul>
+              <li>
+                <a href="#"><i class="fab fa-facebook-f">facebook</i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-twitter">twittter</i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-instagram">instagram</i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 SkillTrade Hub. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
