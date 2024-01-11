@@ -21,7 +21,6 @@ model User {
 
   createdAt DateTime  @default(now())
   lastLogin DateTime?
-
 }
 
 model Technician {
@@ -32,26 +31,27 @@ model Technician {
   role     String
   password String
 
-  skills            String[] @default([])
+  skills            String?
   experience        String?
-  requests          Json[]   @default([])
-  educationLevel    String[] @default([])
+  requests          Json[]  @default([])
+  educationLevel    String?
   availableLocation String?
-  additionalBio     String?  @db.Text
+  additionalBio     String? @db.Text
 
   createdAt DateTime  @default(now())
   lastLogin DateTime?
 }
 
-model Booking{
-  id Int @id @default( autoincrement())
-  customerId Int 
-  technicianId Int
-  createdDate DateTime @default(now())
-  serviceDate DateTime  
-  serviceNeeded String @db.Text
-  problemDescription String @db.Text
-  status String   
-  @@unique([customerId, technicianId, serviceDate])
+model Booking {
+  id                 Int      @id @default(autoincrement())
+  customerId         Int
+  technicianId       Int
+  createdDate        DateTime @default(now())
+  serviceDate        DateTime
+  serviceNeeded      String   @db.Text
+  problemDescription String   @db.Text
+  status             String
   // user User @relation(fields: [customerId], references: [id])
+
+  @@unique([customerId, technicianId, serviceDate])
 }

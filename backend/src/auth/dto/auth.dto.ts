@@ -9,7 +9,8 @@ export class AuthDto {
 
     // @IsNumber()
     // @IsNotEmpty()
-    phone: number;
+    @IsString()
+    phone: string;
 
     @IsNotEmpty()
     @IsString()
