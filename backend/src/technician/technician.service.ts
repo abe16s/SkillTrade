@@ -18,6 +18,15 @@ export class TechnicianService {
         const result = await this.prisma.technician.findUnique({
             where: {
                 id: technicianId,
+            },
+            select: {
+                fullName: true,
+                skills: true,
+                phone: true,
+                experience: true,
+                educationLevel: true,
+                availableLocation: true,
+                additionalBio: true,
             }
         })
         return result
