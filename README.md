@@ -34,9 +34,11 @@ After cloning the project
 7. Go to frontend directory and open the index.html file
 
 #### Why we choose PostgreSQL 
+<pre>
 i) PostgreSQL offers a wide range of advanced features, including support for complex queries, indexing, transactions, and foreign keys. It also supports various data types, including custom types and indexing mechanisms.
 ii) PostgreSQL is designed to scale horizontally and vertically. It supports both read and write scaling strategies, making it suitable for a wide range of applications, from small projects to large enterprise-level systems.
 iii) PostgreSQL is a relational database and relational databases enforce data integrity through features such as primary keys, foreign keys, and constraints. This ensures that data is accurate, consistent, and complies with the defined rules.
+</pre>
 
 ## Description of the website
 This hub is designed to simplify the process of connecting skilled trade technicians with customers seeking home installation like Dish Network technician, Plumber, Carpenter, Electrician, Mason, Landscaper/Gardener, HVAC Technician, Roofing Contractor, Mechanic and etc to installation and maintenance services. It serves as a bridge between professionals adept in various technical skills and individuals in need of these services within their homes.
