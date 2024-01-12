@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>Log in</title>
+  </head>
+  <body>
+    <div class="login-page">
+      <div class="login-container">
+        <h1>Welcome to SkillTrade Hub</h1>
+        <h2>Log in</h2>
+        <form class="login-form" onsubmit="return false">
+          <input type="text" placeholder="Email" id="login-email" required/>
+          <input type="password" placeholder="Password" id="login-password" required/>
+          <div class="login-user">
+            <label for="customer"><input type="radio" name="login-user-type" id="customer" value="customer" required>Customer</label>
+            <label for="tech"><input type="radio" name="login-user-type" id="tech" value="technician" required>Technician</label>
+          </div>
+          <button type="submit" id="login-btn">Login</button>
+        </form>
+        <div class="privacy-statement">
+          <p>If you don't have an account, <a href="./signup.html">sign up here</a>.</p>
+          <p>
+            By logging in, you agree to our <a href="#">Privacy Statement</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="script/fetch/UserFetch.js"></script>
+  </body>
+</html>

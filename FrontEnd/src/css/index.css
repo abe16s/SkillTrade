@@ -1,0 +1,826 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+nav {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  top: 0;
+  font-family: "Montserrat", sans-serif;
+  padding: 0 5%;
+  height: 100px;
+  background-color: rgb(101, 140, 154);
+}
+nav .logo {
+  float: left;
+  border-radius: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  color: gold;
+}
+nav .links {
+  float: right;
+  padding: 0;
+  margin: 0;
+
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+nav .links li {
+  list-style: none;
+}
+nav .links a {
+  display: block;
+  padding: 1em;
+  font-size: 16px;
+  font-weight: bold;
+  color: gold;
+  text-decoration: none;
+}
+#nav-toggle {
+  position: absolute;
+  top: -100px;
+}
+nav .icon-burger {
+  display: none;
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+nav .icon-burger .line {
+  width: 30px;
+  height: 5px;
+  background-color: black;
+  margin: 5px;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+@media screen and (max-width: 740px) {
+  nav .logo {
+    float: none;
+    width: auto;
+    justify-content: center;
+  }
+  nav .links {
+    float: none;
+    position: fixed;
+    z-index: 9;
+    left: 0;
+    right: 0;
+    top: 100px;
+    bottom: 100%;
+    width: auto;
+    height: auto;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: all 0.5s ease-in-out;
+  }
+  nav .links a {
+    font-size: 20px;
+  }
+  nav :checked ~ .links {
+    bottom: 0;
+  }
+  nav .icon-burger {
+    display: block;
+  }
+  nav :checked ~ .icon-burger .line:nth-child(1) {
+    transform: translateY(10px) rotate(225deg);
+  }
+  nav :checked ~ .icon-burger .line:nth-child(3) {
+    transform: translateY(-10px) rotate(-225deg);
+  }
+  nav :checked ~ .icon-burger .line:nth-child(2) {
+    opacity: 0;
+  }
+  .services {
+    flex-wrap: wrap;
+  }
+}
+/* home page start  */
+.both {
+  width: 98%;
+}
+.about_us {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20px 20px;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+.about_us div {
+  padding: 20px 5vw;
+  width: 50%;
+  min-width: 250px;
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 1.2em;
+  text-align: center;
+}
+.about_us img {
+  width: 30%;
+  padding: 10px;
+  object-fit: cover;
+  min-width: 300px;
+}
+.services {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 10px;
+  gap: 8px;
+}
+.h2 {
+  text-align: center;
+  color: gold;
+}
+.service-card {
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 1em;
+  background-color: aliceblue;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.service-card img {
+  width: 100%;
+}
+
+.hero {
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 100px;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: black;
+}
+.hero p {
+  color: black;
+}
+.hero h1 {
+  color: black;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: gold;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* home page end  */
+
+/* sign up start */
+
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  margin: 100px auto;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px 0px black;
+  padding: 30px 50px;
+}
+
+.signup-options {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.option {
+  margin-bottom: 20px;
+}
+
+.radio-btn {
+  display: none;
+}
+
+.option label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.option label img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.option input[type="radio"]:checked + label img {
+  border-color: #007bff;
+}
+
+.signup-form {
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+button {
+  width: 90%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+textarea {
+  width: 90%;
+  height: 100px;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+/* sign up end  */
+
+/* login page start  */
+.login-page {
+  height: 100vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0px 0px 4px 0px black;
+  padding: 30px 50px;
+}
+
+.login-container h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: #0056b3;
+}
+
+.login-user {
+  display: flex;
+  gap: 10px;
+}
+
+.login-user label {
+  display: flex;
+}
+
+.privacy-statement {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.privacy-statement a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.privacy-statement a:hover {
+  text-decoration: underline;
+}
+
+/* login page end */
+/* find technitian start */
+
+.technicians {
+  padding-top: 90px;
+  background-image: url("../img/bg.jpg");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.technician-card {
+  padding-top: 100px;
+  width: 300px;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.technician-card img {
+  width: 70%;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.book-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.book-btn:hover {
+  background-color: #0056b3;
+}
+/* find technitian start */
+
+/* booking start  */
+.all-container {
+  display: flex;
+  margin-top: 100px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+  /* padding: 4; */
+}
+.profile-conta {
+  width: 40%;
+  background-color: #fff;
+  overflow: hidden;
+  min-width: 400px;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-detail {
+  padding: 20px;
+}
+
+.profile-detail h2 {
+  font-size: 1.7em;
+}
+
+.profile-detail p {
+  font-size: 1.2em;
+}
+
+.form-container {
+  width: 400px;
+  background-color: #fff;
+  overflow: hidden;
+  gap: 5px;
+}
+
+.form-group label {
+  display: block;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-group select {
+  height: 40px;
+}
+
+.submit-button {
+  text-align: center;
+  padding: 20px;
+}
+
+.submit-button button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/* booking end  */
+
+/* technician pro start */
+.profile-container h1 {
+  text-align: center;
+}
+.profile-form input {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.profile-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.profile-form button:hover {
+  background-color: #0056b3;
+}
+.booking-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 10px;
+  gap: 10px;
+  width: 100%;
+}
+
+.edit-button,
+.save-button,
+.cancel-button,
+.btn-update-profile {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+.btn-update-profile {
+  width: 50%;
+}
+
+.edit-button {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.save-button {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+.cancel-button {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.btn-update-profile {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.edit-button:hover,
+.save-button:hover,
+.cancel-button:hover,
+.btn-update-profile:hover {
+  background-color: #333;
+}
+
+/* technician pro end  */
+
+/* custemer pro atart */
+.profile-container {
+  max-width: 800px;
+  margin: 200px auto 100px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.profile-info,
+.previous-bookings {
+  margin-bottom: 30px;
+ 
+}
+
+.no-bookings {
+  color: rgb(245, 72, 72);
+  text-align: center;
+}
+
+.book-one {
+  width: 10%;
+  margin: 10px auto;
+  display: block;
+}
+
+.profile-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.updated-profile-card{
+padding: 10px;
+margin-left: 10px;
+width: 100%;
+}
+.inputRow{
+  margin: 5px;
+}
+.is_hidden{
+  display: none;
+}
+
+.full-technician-profile{
+  margin:10px;
+  
+}
+.profile-input{
+  display: flex;
+  align-items: center;
+}
+
+.bookings-box {
+  background-color: white;
+}
+
+.profile-input input{
+  flex-grow: 1;
+}
+.profile-input label{
+  font-weight: bolder;
+}
+.controls{
+  display: flex;
+  justify-content: space-evenly;
+
+}
+.controls button{
+  width: 40%
+
+}
+
+.updated-profile-card{
+padding: 10px;
+margin-left: 10px;
+width: 100%;
+}
+.inputRow{
+  margin: 5px;
+}
+.is_hidden{
+  display: none;
+}
+
+.full-technician-profile{
+  margin:10px;
+  
+}
+.controls{
+  display: flex;
+  justify-content: space-evenly;
+
+}
+.controls button{
+  width: 40%
+
+}
+
+.basic-info {
+  font-size: 20px;
+}
+
+.booking-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.booking-item {
+  text-align: center;
+}
+.booking-item h3 {
+  margin-bottom: 5px;
+}
+.technician {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  box-shadow: 0 0 2px 0 black;
+  margin: 20px auto;
+}
+.service-form {
+  width: 400px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.form-button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 8px;
+  width: 25%;
+}
+
+.form-button:hover {
+  background-color: #45a049;
+}
+
+.button_is_hidden {
+  display: none;
+}
+
+.booking-delete {
+  background-color: red;
+  display: block;
+  margin: 10px auto;
+  width: 50%;
+}
+
+/* .cancel-button {
+  background-color: #ccc;
+  color: #333;
+}
+
+.cancel-button:hover {
+  background-color: #999;
+} */
+
+/* custemer pro atart */
+/* footer start */
+.footer {
+  background-color: rgb(101, 140, 154);
+  color: gold;
+  padding: 40px 0;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  flex: 1 1 300px;
+}
+
+.footer-logo img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.footer-links,
+.footer-social {
+  flex: 1 1 200px;
+}
+
+.footer-links ul,
+.footer-social ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links a,
+.footer-social a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+/* footer end  */

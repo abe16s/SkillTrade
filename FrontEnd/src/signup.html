@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>Sign up</title>
+  </head>
+  <body>
+    <div class="form">
+      <div class="signup-container">
+        <h1>Welcome to SkillTrade Hub</h1>
+        <h2>Sign Up</h2>
+
+        <div class="signup-options">
+          <div class="option">
+            <input
+              type="radio"
+              id="customer"
+              name="user-type"
+              class="radio-btn"
+              checked
+            />
+            <label for="customer">
+              <h4>As Customer</h4>
+              <img src="../img/logo-user.png" alt="customer" />
+            </label>
+          </div>
+          <div class="option">
+            <input
+              type="radio"
+              id="technician"
+              name="user-type"
+              class="radio-btn"
+            />
+            <label for="technician">
+              <h4>As Technician</h4>
+              <img src="../img/logo-tech.png" alt="technicianlogo" />
+            </label>
+          </div>
+        </div>
+        <div class="customer-form">
+          <div class="signup-form">
+            <h3>Customer Sign Up</h3>
+            <form onsubmit="return false">
+              <input
+                type="text"
+                id="customer-fullName"
+                name="fullName"
+                placeholder="Full Name"
+                required
+              />
+              <input
+                type="email"
+                id="customer-email"
+                name="email"
+                placeholder="Email"
+                required
+              />
+              <input
+                type="tel"
+                id="customer-phone"
+                name="phone"
+                placeholder="Phone"
+                required
+              />
+              <input
+                type="password"
+                id="customer-password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+              <button type="submit" id="customer-signup">Sign Up</button>
+            </form>
+          </div>
+        </div>
+        <div class="technician-form hidden">
+          <div class="signup-form">
+            <h3>Technician Sign Up</h3>
+            <form onsubmit="return false">
+              <input
+                type="text"
+                id="technician-fullName"
+                name="fullName"
+                placeholder="Full Name"
+                required
+              />
+              <input
+                type="email"
+                id="technician-email"
+                name="email"
+                placeholder="Email"
+                required
+              />
+              <input
+                type="tel"
+                id="technician-phone"
+                name="phone"
+                placeholder="Phone"
+                required
+              />
+              <input
+                type="password"
+                id="technician-password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+              <input
+                type="text"
+                id="technician-skills"
+                name="skills"
+                placeholder="Skills"
+                required
+              />
+              <input
+                type="text"
+                id="technician-experience"
+                name="experience"
+                placeholder="Experience"
+                required
+              />
+              <input
+                type="text"
+                id="technician-educationLevel"
+                name="educationLevel"
+                placeholder="Education Level"
+                required
+              />
+              <input
+                type="text"
+                id="technician-availableLocation"
+                name="availableLocation"
+                placeholder="Available Location"
+                required
+              />
+              <textarea
+                id="technician-additionalBio"
+                name="additionalBio"
+                placeholder="Additional Bio"
+              ></textarea>
+              <button type="submit" id="technician-signup">Sign Up</button>  
+            </form>
+          </div>
+        </div>
+        <div class="privacy-statement">
+          <p>If you have an account, <a href="./login.html">Login here</a>.</p>
+          <p>
+            By logging in, you agree to our
+            <a href="#">Privacy Statement</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script/fetch/UserFetch.js"></script>
+    <script>
+      let customerRadio = document.getElementById("customer");
+      let technicianRadio = document.getElementById("technician");
+      let customerForm = document.getElementsByClassName("customer-form")[0];
+      let technicianForm =
+        document.getElementsByClassName("technician-form")[0];
+      customerRadio.addEventListener("change", () => {
+        if (customerRadio.checked) {
+          customerForm.classList.toggle("hidden");
+          technicianForm.classList.toggle("hidden");
+        }
+      });
+      technicianRadio.addEventListener("change", () => {
+        if (technicianRadio.checked) {
+          customerForm.classList.toggle("hidden");
+          technicianForm.classList.toggle("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
