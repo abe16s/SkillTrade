@@ -99,14 +99,14 @@ export class AuthService {
       email,
       role,
     };
-    let token: any = await this.jwt.signAsync(payload, {
+    const token: any = await this.jwt.signAsync(payload, {
       expiresIn: '120m',
       secret: 'brothers',
     });
     return {
       access_token: token,
-      role
-    }
+      role,
+    };
   }
 
   validateToken(token: string): any {
