@@ -8,7 +8,7 @@ import { IsCustomerGuard } from 'src/auth/guards';
 export class CustomerController {
     constructor(private readonly customerService: CustomerService) { }
     @Get(':id')
-    @UseGuards(AuthGuard('jwt'), IsCustomerGuard)
+    @UseGuards(AuthGuard('jwt'))
     findCustomerProfile(@Param('id', ParseIntPipe) id: number){
         return this.customerService.findCustomerProfile(id)
     }

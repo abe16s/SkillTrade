@@ -3,7 +3,7 @@ import {readBookingsOfCustomerFromServer, deleteBookingFromServer} from "./Booki
 import {fetchTechnicianProfile} from './technicianFetch.js'
 
 let infoDiv = document.getElementsByClassName("basic-info")[0]
-let customerData = await fetchCustomerProfile()
+let customerData = await fetchCustomerProfile(localStorage.getItem("userId"))
 
 infoDiv.innerHTML = `<p><strong>Name:</strong> ${customerData.fullName}</p>
                     <p><strong>Email:</strong> ${customerData.email}</p>
@@ -72,6 +72,7 @@ for (let i = customerBookings.length -1; i >= 0 ; i--) {
     prevBookings.appendChild(temp)
     temp.innerHTML = `
     <div>
+      <h4>Booked with</h4>
       <h3>${bookedFor.fullName}</h3>
       <h5>Specialty: ${bookedFor.skills}</h5>
       <h5>Phone: ${bookedFor.phone}</h5>
