@@ -103,10 +103,55 @@ nav .icon-burger .line {
   nav :checked ~ .icon-burger .line:nth-child(2) {
     opacity: 0;
   }
+  .services {
+    flex-wrap: wrap;
+  }
 }
 /* home page start  */
+.both {
+  margin-top: 100px;
+  width: 98%;
+}
+.about_us {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20px 20px;
+}
+.about_us div {
+  padding: 20px;
+  width: 50%;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+.about_us img {
+  width: 40%;
+  padding: 10px;
+}
+.services {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 10px;
+  gap: 8px;
+}
+.h2 {
+  text-align: center;
+  color: gold;
+}
+.service-card {
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 1em;
+  background-color: aliceblue;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.service-card img {
+  width: 100%;
+}
+
 .hero {
-  background-image: url("img/bg.jpg");
   background-size: cover;
   color: #fff;
   text-align: center;
@@ -525,12 +570,13 @@ textarea {
 .profile-info,
 .previous-bookings {
   margin-bottom: 30px;
-  justify-content: space-between;
+ 
 }
 
 .profile-details {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .profile-pic {
@@ -538,6 +584,58 @@ textarea {
   height: 150px;
   border-radius: 50%;
   margin-right: 20px;
+}
+
+.updated-profile-card{
+padding: 10px;
+margin-left: 10px;
+width: 100%;
+}
+.inputRow{
+  margin: 5px;
+}
+.is_hidden{
+  display: none;
+}
+
+.full-technician-profile{
+  margin:10px;
+  
+}
+.controls{
+  display: flex;
+  justify-content: space-evenly;
+
+}
+.controls button{
+  width: 40%
+
+}
+
+.updated-profile-card{
+padding: 10px;
+margin-left: 10px;
+width: 100%;
+}
+.inputRow{
+  margin: 5px;
+}
+.is_hidden{
+  display: none;
+}
+
+.full-technician-profile{
+  margin:10px;
+  
+}
+.controls{
+  display: flex;
+  justify-content: space-evenly;
+
+}
+.controls button{
+  width: 40%
+
 }
 
 .basic-info {
