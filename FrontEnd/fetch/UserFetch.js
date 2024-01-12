@@ -1,6 +1,7 @@
 let signUpAPI = 'http://localhost:9000/trader/signup';
 let signInAPI = 'http://localhost:9000/trader/signin';
-let userAPI = 'http://localhost:9000/user';
+let technicianAPI = 'http://localhost:9000/technician';
+let homeAPI = 'http://localhost:9000'
 //signUp - create account
 //As a Customer
 function signUpCustomer() {
@@ -50,8 +51,8 @@ function signUpTechnician() {
     let availableLocationTemp = document.getElementById("technician-availableLocation");
     let additionalBioTemp = document.getElementById("technician-additionalBio");
     let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!(fullNameTemp.checkValidity() && phoneTemp.checkValidity() && passwordTemp.checkValidity() && experienceTemp.checkValidity() && availableLocationTemp.checkValidity())) {
-        return;
+    if (!(fullNameTemp.checkValidity() && phoneTemp.checkValidity() && passwordTemp.checkValidity() && skillsTemp.checkValidity() && experienceTemp.checkValidity() && educationLevelTemp.checkValidity() && availableLocationTemp.checkValidity())) {
+            return;
     }
     if (!(emailRegex.test(emailTemp.value) && emailTemp.checkValidity())) {
         alert("Please enter a valid email!");
@@ -62,7 +63,7 @@ function signUpTechnician() {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ "role": "technician", "fullName": fullNameTemp.value, "email": emailTemp.value, "phone": phoneTemp.value, "password": passwordTemp.value, "experience": experienceTemp.value, "availableLocation": availableLocationTemp.value, "additionalBio": additionalBioTemp.value })
+        body: JSON.stringify({ "role": "technician", "fullName": fullNameTemp.value, "email": emailTemp.value, "phone": phoneTemp.value, "password": passwordTemp.value, "skills": skillsTemp.value, "experience": experienceTemp.value, "educationLevel": educationLevelTemp.value, "availableLocation": availableLocationTemp.value, "additionalBio": additionalBioTemp.value })
     })
         .then(function (response) { return response.json(); })
         .then(function (data) {
@@ -98,6 +99,7 @@ function signInUser(email, password, role) {
         console.log(data);
         localStorage.setItem('jwtToken', data.access_token);
         localStorage.setItem("userRole", data.role);
+        localStorage.setItem("userId", data.userId);
         if (data.role == "technician") {
             console.log("Redirect to Technician Page");
         }
@@ -109,8 +111,8 @@ function signInUser(email, password, role) {
 }
 let updatedProfileChanges = { "email": "abc@com.com", "phone": 923823 };
 //Update profile on server
-function updateProfile(user) {
-    let updateUrl = "".concat(userAPI, "/").concat(6);
+function updateProfile(user, updatedProfileChanges) {
+    let updateUrl = "".concat(technicianAPI, "/").concat(user);
     fetch(updateUrl, {
         method: "PATCH",
         headers: {
@@ -121,10 +123,90 @@ function updateProfile(user) {
     })
         .then(function (response) { return response.json(); })
         .then(function (data) {
-        console.log(data);
+            return data
     })
         .catch(function (error) { return console.error("Error updating profile!", error); });
 }
+
+/*=========================================================================
+        KAB
+===========================================================================*/
+
+// fetch for user profile
+async function fetchUserProfile(id){
+    let userProfileURL = `${homeAPI}/technician/${id}`;
+    try {
+        const response = await fetch(userProfileURL, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+            }
+        });
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching profile:", error);
+        return {};
+    }
+}
+
+
+const profileUpdateBtn = document.querySelector(".btn-update-profile")
+const saveUpdatedBtn = document.querySelector(".save-profile-update")
+const cancelUpdatedBtn = document.querySelector(".cancel-profile-update")
+const profile = document.querySelector(".updated-profile-card")
+
+let unsavedChanges = {}
+function recordChanges(key){
+    unsavedChanges[key] = document.getElementById(key).value
+
+}
+let technicianId= 1;
+function updateHandler(event){
+    technicianId = parseInt(event.target.id)
+    saveUpdatedBtn.classList.toggle("is_hidden")
+    cancelUpdatedBtn.classList.toggle("is_hidden")
+    profileUpdateBtn.classList.toggle("is_hidden")
+
+
+}
+async function displayProfile(){
+
+    result = await fetchUserProfile(technicianId)
+    
+    Object.entries(result).map(([key, value]) => {
+        let field = document.createElement("div")
+          field.innerHTML = `<div key=${key}>
+          <label for=${key}>${key}</label>
+          <input class="inputRow" onchange="recordChanges('${key}','${result}')" value ='${value}' id=${key} />
+        </div>`
+        profile.appendChild(field)
+
+      });
+
+}
+
+
+function saveUpdated(event){
+    updateProfile(technicianId, unsavedChanges)
+    saveUpdatedBtn.classList.toggle("is_hidden")
+    cancelUpdatedBtn.classList.toggle("is_hidden")
+    profileUpdateBtn.classList.toggle("is_hidden")
+
+}
+
+function cancelUpdating(event){
+    profile.innerHTML = ""
+    displayProfile()
+    saveUpdatedBtn.classList.toggle("is_hidden")
+    cancelUpdatedBtn.classList.toggle("is_hidden")
+    profileUpdateBtn.classList.toggle("is_hidden")
+}
+
+
+//======================================================================
+
 // Manipulate DOM
 let customerBtn = document.getElementById("customer-signup");
 if (customerBtn) {

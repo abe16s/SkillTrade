@@ -33,6 +33,12 @@ export class TechnicianController {
     }
   }
 
+  @Get()
+  @UseGuards(AuthGuard('jwt'))
+  findAllTechnicianProfiles() {
+    return this.technicianService.findAllTechnicianProfiles();
+  }
+
   @Patch(':id')
   @UseGuards(AuthGuard('jwt'), IsTechnicianGuard)
   updateTechnicianProfile(

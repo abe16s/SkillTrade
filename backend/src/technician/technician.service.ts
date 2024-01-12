@@ -5,17 +5,35 @@ import { Request } from 'express';
 
 @Injectable()
 export class TechnicianService {
-  constructor(private readonly prisma: PrismaService) {}
-  async findTechnicianProfile(technicianId: number) {
-    // if (technicianId === user) {
-      const result = await this.prisma.technician.findUnique({
-        where: {
-          id: technicianId,
-        },
-      });
-      return result;
-    // }
-  }
+    constructor(private readonly prisma: PrismaService) {}
+    async findAllTechnicianProfiles(){
+        const result = await this.prisma.technician.findMany({
+            select: {
+                fullName: true,
+                skills: true,
+                id: true,
+            }
+        })
+        return result
+    }
+    async findTechnicianProfile(technicianId: number) {
+        const result = await this.prisma.technician.findUnique({
+            where: {
+                id: technicianId,
+            },
+            select: {
+                fullName: true,
+                skills: true,
+                phone: true,
+                experience: true,
+                educationLevel: true,
+                availableLocation: true,
+                additionalBio: true,
+            }
+        })
+        return result
+        
+    }
 
     async updateTechnicianProfile(technicianId: number, profileUpdate: TechnicianDto){
         return await this.prisma.technician.update({

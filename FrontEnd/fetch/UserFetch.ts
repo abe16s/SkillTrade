@@ -79,7 +79,7 @@ function signUpTechnician(): void {
     let additionalBioTemp: HTMLInputElement | null = document.getElementById("technician-additionalBio") as HTMLInputElement;
 
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!(fullNameTemp.checkValidity() && phoneTemp.checkValidity() && passwordTemp.checkValidity() && experienceTemp.checkValidity() && availableLocationTemp.checkValidity())) {
+    if (!(fullNameTemp.checkValidity() && phoneTemp.checkValidity() && passwordTemp.checkValidity() && skillsTemp.checkValidity() && experienceTemp.checkValidity() && educationLevelTemp.checkValidity() && availableLocationTemp.checkValidity())) {
         return
     }
     
@@ -93,12 +93,12 @@ function signUpTechnician(): void {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ "role": "technician", "fullName": fullNameTemp.value, "email": emailTemp.value, "phone": phoneTemp.value, "password": passwordTemp.value, "experience": experienceTemp.value, "availableLocation": availableLocationTemp.value, "additionalBio": additionalBioTemp.value })
+        body: JSON.stringify({ "role": "technician", "fullName": fullNameTemp.value, "email": emailTemp.value, "phone": phoneTemp.value, "password": passwordTemp.value, "skills": skillsTemp.value, "experience": experienceTemp.value, "educationLevel": educationLevelTemp.value, "availableLocation": availableLocationTemp.value, "additionalBio": additionalBioTemp.value })
     })
     .then((response) => response.json())
     .then((data) => {
         if ("error" in data) {
-            alert("A user with that email already exists! Please try Login")
+            alert("A user with that email or phone number already exists! Please try Login")
             console.log(data)
             return 
         }
@@ -130,6 +130,7 @@ function signInUser(email: string, password: string, role: string): void {
         console.log(data);
         localStorage.setItem('jwtToken', data.access_token);
         localStorage.setItem("userRole", data.role);
+        localStorage.setItem("userId", data.userId);
         if (data.role == "technician") {
             console.log("Redirect to Technician Page");
         }

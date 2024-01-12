@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Custemer-pro</title>
+  </head>
+  <body>
+    <nav>
+      <input id="nav-toggle" type="checkbox" />
+      <img src="img/logo.jpg" alt="logo" class="logo" />
+      <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="find_tec.html">Find Technicians</a></li>
+        <li class="btn"><a href="login.html">Login</a></li>
+      </ul>
+      <label for="nav-toggle" class="icon-burger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </label>
+    </nav>
+    <div class="profile-container">
+      <h1 class="title">Customer Profile</h1>
+
+      <div class="profile-info">
+        <!-- Customer information display -->
+        <div class="profile-details">
+          <img
+            src="img/logo-user.png"
+            alt="Profile Picture"
+            class="profile-pic"
+          />
+
+          <div class="info">
+            <h2>Customer Information</h2>
+            <p>Name: John Doe</p>
+            <p>Email: john@example.com</p>
+            <!-- Add more customer details as needed -->
+          </div>
+        </div>
+      </div>
+
+      <div class="previous-bookings">
+        <div class="booking-item">
+          <h2>Bookings</h2>
+          <div class="tecntians">
+            <div>
+              <h3>Mamo Demsew</h3>
+              <h5>Specialty: Dish Network technician</h5>
+              <h5>Phone:+25184678397</h5>
+              <h5>Email:mamodemsew@email.com</h5>
+            </div>
+            <div>
+              <form
+                class="service-form"
+                id="serviceForm"
+                onsubmit="return false"
+              >
+                <label for="bookedDate" class="form-label"
+                  ><strong>Booked Date</strong>:</label
+                >
+                <input
+                  type="text"
+                  id="bookedDate"
+                  name="bookedDate"
+                  class="form-input"
+                  value="January 1, 2023"
+                  required
+                  disabled
+                />
+
+                <label for="serviceDate" class="form-label"
+                  ><strong>Service Date</strong>:</label
+                >
+                <input
+                  type="text"
+                  id="serviceDate"
+                  name="serviceDate"
+                  class="form-input"
+                  value="January 5, 2023"
+                  required
+                  disabled
+                />
+
+                <label for="serviceNeeded" class="form-label"
+                  ><strong>Service Needed</strong>:</label
+                >
+                <input
+                  type="text"
+                  id="serviceNeeded"
+                  name="serviceNeeded"
+                  class="form-input"
+                  value="Repair"
+                  required
+                  disabled
+                />
+
+                <label for="problemDescription" class="form-label"
+                  ><strong>Problem Description</strong>:</label
+                >
+                <textarea
+                  id="problemDescription"
+                  name="problemDescription"
+                  class="form-textarea"
+                  rows="4"
+                  required
+                  disabled
+                >
+Description of the problem</textarea
+                >
+
+                <label for="serviceLocation" class="form-label"
+                  ><strong>Service Location</strong>:</label
+                >
+                <input
+                  type="text"
+                  id="serviceLocation"
+                  name="serviceLocation"
+                  class="form-input"
+                  value="Address"
+                  required
+                  disabled
+                />
+
+                <label for="status" class="form-label"
+                  ><strong>Status</strong>:</label
+                >
+
+                <input
+                  type="text"
+                  id="status"
+                  name="status"
+                  class="form-input"
+                  value="Pending"
+                  required
+                  disabled
+                />
+
+                <button class="form-button edit" onclick="editForm()">
+                  edit
+                </button>
+                <button
+                  class="form-button button_is_hidden save"
+                  onclick="saveForm()"
+                >
+                  save
+                </button>
+                <button
+                  class="form-button button_is_hidden cancel-button cancel"
+                  onclick="cancelForm()"
+                >
+                  cancel
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img class="logo" src="img/logo.jpg" alt="SkillTrade Hub" />
+            <p>Your go-to platform for skilled trades!</p>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="find_tec.html">Find Technicians</a></li>
+            </ul>
+          </div>
+          <div class="footer-social">
+            <h4>Connect with Us</h4>
+            <ul>
+              <li>
+                <a href="#"><i class="fab fa-facebook-f">facebook</i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-twitter">twittter</i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-instagram">instagram</i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 SkillTrade Hub. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      var editButton = document.querySelector(".edit");
+      var saveButton = document.querySelector(".save");
+      var cancelButton = document.querySelector(".cancel");
+
+      function saveForm() {
+        enableFormFields(false);
+        saveButton.classList.toggle("button_is_hidden");
+        cancelButton.classList.toggle("button_is_hidden");
+        editButton.classList.toggle("button_is_hidden");
+      }
+
+      function editForm() {
+        enableFormFields(true);
+        saveButton.classList.toggle("button_is_hidden");
+        cancelButton.classList.toggle("button_is_hidden");
+        editButton.classList.toggle("button_is_hidden");
+      }
+
+      function cancelForm() {
+        document.getElementById("serviceForm").reset();
+        enableFormFields(false);
+        saveButton.classList.toggle("button_is_hidden");
+        cancelButton.classList.toggle("button_is_hidden");
+        editButton.classList.toggle("button_is_hidden");
+      }
+
+      function enableFormFields(enable) {
+        var form = document.getElementById("serviceForm");
+        var formElements = form.elements;
+
+        for (var i = 1; i < formElements.length - 4; i++) {
+          formElements[i].disabled = !enable;
+        }
+      }
+    </script>
+  </body>
+</html>

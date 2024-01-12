@@ -8,7 +8,7 @@ export class AuthDto {
     fullName: string;
 
     @IsString()
-    phone: number;
+    phone: string;
 
     @IsNotEmpty()
     @IsString()
