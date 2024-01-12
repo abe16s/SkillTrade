@@ -27,8 +27,9 @@ if (localStorage.getItem('jwtToken')) {
     }
     navs.getElementsByClassName("btn")[0].addEventListener("click", logout)
 } else {
-    navs.innerHTML = `<li><a href="index.html">Home</a></li>
-                <a href="login.html"><li class="btn">Login</li></a>`
+    navs.innerHTML = `
+                <a href="login.html"><li class="btn">Login</li></a>
+                <a href="signup.html"><li class="btn">Sign Up</li></a>`
 }
 
 function logout() {

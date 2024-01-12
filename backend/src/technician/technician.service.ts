@@ -29,6 +29,7 @@ export class TechnicianService {
                 educationLevel: true,
                 availableLocation: true,
                 additionalBio: true,
+                email: true
             }
         })
         return result

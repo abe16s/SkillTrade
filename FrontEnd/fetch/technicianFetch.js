@@ -3,7 +3,12 @@ let technicianAPI = 'http://localhost:9000/technician';
 // Get all technicians
 export async function getAllTechnicians() {
     try {
-        const response = await fetch(technicianAPI) 
+        const response = await fetch(technicianAPI, {
+            method: 'GET',
+            headers: {
+                'Authorization': "Bearer ".concat(localStorage.getItem('jwtToken'))
+            }
+        }) 
         const data = await response.json()
         if ("error" in data) {
             return
