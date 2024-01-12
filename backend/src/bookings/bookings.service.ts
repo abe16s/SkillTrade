@@ -62,6 +62,7 @@ export class BookingsService {
                 serviceDate: new Date(dto.serviceDate),
                 serviceNeeded: dto.serviceNeeded,
                 problemDescription: dto.problemDescription,
+                serviceLocation: dto.serviceLocation,
                 status:"pending",
 
               },

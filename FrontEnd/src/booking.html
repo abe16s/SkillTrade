@@ -28,58 +28,47 @@
           <img src="img/logo-tech.png" alt="Profile Picture" />
         </div>
 
-        <div class="profile-detai">
-          <h2>John Doe</h2>
-          <p><strong>Email</strong>: john.doe@example.com</p>
-          <p><strong>Phone</strong> : +1 123-456-7890</p>
-          <p><strong>Skills</strong> : HTML, CSS, JavaScript</p>
-          <p><strong>Experience</strong> : 5 years</p>
-          <p><strong>Education Level</strong> : Bachelor's Degree</p>
-          <p><strong>Available Location</strong> : Anywhere</p>
-          <p>
-            <strong>Additional Bio</strong> : Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit.
-          </p>
+        <div class="profile-detail">
+          
         </div>
       </div>
 
-      <div class="form-container">
+      <form class="form-container" onsubmit="return false">
         <h1>Book Service</h1>
+          <div class="form-group">
+            <label for="serviceDate">Service Date:</label>
+            <input type="date" id="serviceDate" name="serviceDate" required />
+          </div>
 
-        <div class="form-group">
-          <label for="serviceDate">Service Date:</label>
-          <input type="date" id="serviceDate" name="serviceDate" required />
-        </div>
+          <div class="form-group">
+            <label for="serviceNeeded">Service Needed:</label>
+            <input type="text" id="serviceNeeded" name="serviceNeeded" required />
+          </div>
 
-        <div class="form-group">
-          <label for="serviceNeeded">Service Needed:</label>
-          <input type="text" id="serviceNeeded" name="serviceNeeded" required />
-        </div>
+          <div class="form-group">
+            <label for="problemDescription">Problem Description:</label>
+            <textarea
+              id="problemDescription"
+              name="problemDescription"
+              rows="4"
+              required
+            ></textarea>
+          </div>
 
-        <div class="form-group">
-          <label for="problemDescription">Problem Description:</label>
-          <textarea
-            id="problemDescription"
-            name="problemDescription"
-            rows="4"
-            required
-          ></textarea>
-        </div>
+          <div class="form-group">
+            <label for="serviceLocation">Service Location:</label>
+            <input
+              type="text"
+              id="serviceLocation"
+              name="serviceLocation"
+              required
+            />
+          </div>
 
-        <div class="form-group">
-          <label for="serviceLocation">Service Location:</label>
-          <input
-            type="text"
-            id="serviceLocation"
-            name="serviceLocation"
-            required
-          />
-        </div>
-
-        <div class="submit-button">
-          <button type="submit">Book</button>
-        </div>
-      </div>
+          <div class="submit-button">
+            <button type="submit" id="submitBooking">Book</button>
+          </div>
+      </form>
     </div>
     <footer class="footer">
       <div class="container">
@@ -115,5 +104,6 @@
         </div>
       </div>
     </footer>
+    <script src="../fetch/BookingsFetch.js"></script>
   </body>
 </html>

@@ -103,10 +103,55 @@ nav .icon-burger .line {
   nav :checked ~ .icon-burger .line:nth-child(2) {
     opacity: 0;
   }
+  .services {
+    flex-wrap: wrap;
+  }
 }
 /* home page start  */
+.both {
+  margin-top: 100px;
+  width: 98%;
+}
+.about_us {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20px 20px;
+}
+.about_us div {
+  padding: 20px;
+  width: 50%;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+.about_us img {
+  width: 40%;
+  padding: 10px;
+}
+.services {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 10px;
+  gap: 8px;
+}
+.h2 {
+  text-align: center;
+  color: gold;
+}
+.service-card {
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 1em;
+  background-color: aliceblue;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.service-card img {
+  width: 100%;
+}
+
 .hero {
-  background-image: url("img/bg.jpg");
   background-size: cover;
   color: #fff;
   text-align: center;
@@ -325,7 +370,7 @@ textarea {
 }
 
 .technician-card img {
-  width: 100%;
+  width: 70%;
   border-radius: 50%;
   margin-bottom: 15px;
 }
@@ -376,18 +421,16 @@ textarea {
   object-fit: cover;
 }
 
-.profile-detai {
+.profile-detail {
   padding: 20px;
 }
 
-.profile-detai h2 {
-  color: #333;
-  font-size: 20px;
+.profile-detail h2 {
+  font-size: 1.7em;
 }
 
-.profile-detai p {
-  color: #666;
-  font-size: 20px;
+.profile-detail p {
+  font-size: 1.2em;
 }
 
 .form-container {

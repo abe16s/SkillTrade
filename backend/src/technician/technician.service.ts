@@ -10,6 +10,7 @@ export class TechnicianService {
             select: {
                 fullName: true,
                 skills: true,
+                id: true,
             }
         })
         return result
