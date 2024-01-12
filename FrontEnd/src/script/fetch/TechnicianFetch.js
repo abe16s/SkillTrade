@@ -13,7 +13,6 @@ export async function getAllTechnicians() {
         if ("error" in data) {
             return
         }
-        console.log(data);
         return data
     } catch(error) { return console.error("Error fetching all technicians!", error); };
 }
@@ -29,7 +28,6 @@ export async function fetchTechnicianProfile(id) {
             }
         })
             const data = await response.json()
-            console.log(data);
             return data
         }
         catch(error) { return console.error("Error fetching technician:", error); };

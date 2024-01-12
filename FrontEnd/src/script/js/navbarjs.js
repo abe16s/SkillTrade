@@ -1,7 +1,7 @@
 let navbar = document.querySelector("nav");
 
 navbar.innerHTML = `<input id="nav-toggle" type="checkbox" />
-      <img src="img/logo.jpg" alt="logo" class="logo" />
+      <img src="../img/logo.jpg" alt="logo" class="logo" />
       <ul class="links">
         
       </ul>
@@ -12,10 +12,8 @@ navbar.innerHTML = `<input id="nav-toggle" type="checkbox" />
       </label>`
 
 let navs = navbar.getElementsByClassName("links")[0]
-console.log(localStorage.getItem('jwtToken'))
 if (localStorage.getItem('jwtToken')) {
     if (localStorage.getItem('userRole') == "customer") {
-        console.log("customer")
         navs.innerHTML = `<li><a href="index.html">Home</a></li>
              <li><a href="find_tec.html">Find Technicians</a></li>
             <li><a href="customer-profile.html">Dashboard</a></li>

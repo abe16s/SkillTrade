@@ -1,7 +1,10 @@
-import {fetchCustomerProfile} from "./CustomerFetch.js"
-import {readBookingsOfCustomerFromServer, deleteBookingFromServer} from "./BookingsFetch.js"
-import {fetchTechnicianProfile} from './technicianFetch.js'
-import {updateBookingOnServer} from './BookingsFetch.js'
+/* Javascript file to manipulate the DOM of the customer dashboard */
+
+
+import {fetchCustomerProfile} from "../fetch/CustomerFetch.js"
+import {readBookingsOfCustomerFromServer, deleteBookingFromServer} from "../fetch/BookingsFetch.js"
+import {fetchTechnicianProfile} from '../fetch/technicianFetch.js'
+import {updateBookingOnServer} from '../fetch/BookingsFetch.js'
 
 let infoDiv = document.getElementsByClassName("basic-info")[0]
 let customerData = await fetchCustomerProfile(localStorage.getItem("userId"))
@@ -19,12 +22,8 @@ function saveForm(id) {
     cancelButton.classList.toggle("button_is_hidden");
     editButton.classList.toggle("button_is_hidden");
     updateBookingOnServer(id, unsavedChanges)
-
-
-
-
-
 }
+
 function editForm(id) {
     let editButton = document.getElementById("booking-"+id).querySelector('.edit'); 
     let saveButton = document.getElementById("booking-"+id).querySelector('.save');
@@ -34,7 +33,6 @@ function editForm(id) {
     saveButton.classList.toggle("button_is_hidden");
     cancelButton.classList.toggle("button_is_hidden");
     editButton.classList.toggle("button_is_hidden");
-
 }
 
 function cancelForm(id) {
@@ -46,7 +44,7 @@ function cancelForm(id) {
     saveButton.classList.toggle("button_is_hidden");
     cancelButton.classList.toggle("button_is_hidden");
     editButton.classList.toggle("button_is_hidden");
-  }
+}
 
 function enableFormFields(enable, id) {
   let form = document.getElementById("serviceForm-"+id);
@@ -68,19 +66,25 @@ function deleteBooking(id){
 let unsavedChanges = {}
 function recordBookingChanges(e, customerId){
   unsavedChanges[e.target.name] = e.target.value
-  // if (e.target.name == "serviceDate"){
-  //   e.target.type = "date"
-  // }
-  // alert( e.target.name)
   console.log(unsavedChanges)
-  // unsavedChanges[key] = document.getElementById(key).value
-
 }
 
 let customerBookings = await readBookingsOfCustomerFromServer();
 customerBookings = customerBookings.bookings
-
 let prevBookings = document.getElementsByClassName("previous-bookings")[0];
+
+if (customerBookings.length == 0) {
+  let noBooking = document.createElement("h3")
+  noBooking.innerText = "You don't have any bookings yet"
+  noBooking.classList.add ("no-bookings")
+  prevBookings.appendChild(noBooking);
+
+  let bookOne = document.createElement("button")
+  bookOne.classList.add("book-one")
+  bookOne.innerHTML = "Book One"
+  bookOne.addEventListener("click", () => window.location.href = "find_tec.html")
+  prevBookings.appendChild(bookOne)
+}
 
 for (let i = customerBookings.length -1; i >= 0 ; i--) {
 
@@ -203,4 +207,3 @@ for (let i = customerBookings.length -1; i >= 0 ; i--) {
   temp.querySelector(".changeable-input").addEventListener('change',(e) => recordBookingChanges(e, customerBookings[i].id))
 }
 
-// let unsavedChanges = {}

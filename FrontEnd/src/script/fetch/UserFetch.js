@@ -164,12 +164,9 @@ let technicianId= localStorage.getItem("userId")
 
 function formInputDisabler(enable){
     for (let i = 0; i < 8; i++) {
-        console.log(profile.querySelector(".input-"+i))
-        if (i != 4){
+        if ( profile.querySelector(".input-"+i).id != "email"){
             profile.querySelector(".input-"+i).disabled = !enable;
-
         }
-        
     }
 
 }
@@ -178,13 +175,11 @@ function updateHandler(event, enable){
     cancelUpdatedBtn.classList.toggle("is_hidden")
     profileUpdateBtn.classList.toggle("is_hidden")
     formInputDisabler(true)
-    console.log(profile)
-
 }   
 async function displayProfile(){
 
-    result = await fetchUserProfile(technicianId)
-    labels = {
+    let result = await fetchUserProfile(technicianId)
+    let labels = {
         fullName: "Full name",
         skills: "Skills",
         phone: "Phone",

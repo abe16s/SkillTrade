@@ -1,4 +1,4 @@
-import {getAllTechnicians} from "./technicianFetch.js"
+import {getAllTechnicians} from "../fetch/technicianFetch.js"
 
 let technicianParent = document.getElementsByClassName("technicians")[0];
 
@@ -7,7 +7,7 @@ function createTechnician(id, fullName, skills) {
     let technicianCard = document.createElement("div");
     technicianCard.id = "technician-" + id;
     technicianCard.classList.add("technician-card");
-    technicianCard.innerHTML = `<img src="img/logo-tech.png" alt="Technician pic" />
+    technicianCard.innerHTML = `<img src="../img/logo-tech.png" alt="Technician pic" />
                                 <h2>${fullName}</h2>
                                 <p>Specialty: ${skills}</p>
                                 <a href="booking.html" class="book-btn">Get Technician</a>`

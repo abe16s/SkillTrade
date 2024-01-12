@@ -37,6 +37,10 @@ export function postBookingToServer(bookedForTemp) {
             alert("Please you have to sign in first to book");
             return;
         }
+        if ("message" in data) {
+            alert(data.message)
+            return
+        }
         console.log(data);
         alert("Booked Successfully!")
         window.location.reload();
@@ -70,7 +74,6 @@ export async function readBookingsOfCustomerFromServer() {
             }
         })
         const data = await response.json()
-        console.log(data);
         return data
     }
 

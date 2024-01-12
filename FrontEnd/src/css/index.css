@@ -116,16 +116,23 @@ nav .icon-burger .line {
   flex-direction: row;
   flex-wrap: wrap;
   margin: 20px 20px;
+  justify-content: center;
+  margin-bottom: 50px;
 }
 .about_us div {
-  padding: 20px;
+  padding: 20px 5vw;
   width: 50%;
+  min-width: 250px;
   font-family: sans-serif;
   font-weight: 100;
+  font-size: 1.2em;
+  text-align: center;
 }
 .about_us img {
-  width: 40%;
+  width: 30%;
   padding: 10px;
+  object-fit: cover;
+  min-width: 300px;
 }
 .services {
   display: flex;
@@ -156,7 +163,7 @@ nav .icon-burger .line {
   text-align: center;
   padding: 10px 0;
   margin-top: 100px;
-  height: 70vh;
+  height: 60vh;
   display: flex;
   align-items: center;
 }
@@ -356,7 +363,7 @@ textarea {
 
 .technicians {
   padding-top: 90px;
-  background-image: url("img/bg.jpg");
+  background-image: url("../img/bg.jpg");
   display: flex;
   justify-content: center;
   align-items: center;
@@ -510,6 +517,7 @@ textarea {
   justify-content: space-between;
   margin: 20px 10px;
   gap: 10px;
+  width: 100%;
 }
 
 .edit-button,
@@ -559,7 +567,7 @@ textarea {
 /* custemer pro atart */
 .profile-container {
   max-width: 800px;
-  margin: 150px auto;
+  margin: 200px auto 100px;
   padding: 20px;
   background-color: #f4f4f4;
   border-radius: 8px;
@@ -576,6 +584,17 @@ textarea {
 .previous-bookings {
   margin-bottom: 30px;
  
+}
+
+.no-bookings {
+  color: rgb(245, 72, 72);
+  text-align: center;
+}
+
+.book-one {
+  width: 10%;
+  margin: 10px auto;
+  display: block;
 }
 
 .profile-details {
@@ -610,9 +629,12 @@ width: 100%;
 .profile-input{
   display: flex;
   align-items: center;
-
-  
 }
+
+.bookings-box {
+  background-color: white;
+}
+
 .profile-input input{
   flex-grow: 1;
 }

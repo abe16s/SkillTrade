@@ -10,7 +10,6 @@ export async function fetchCustomerProfile(id) {
         })
     
         const data = await response.json()
-        console.log(data);
         return data
     }
     catch(error) { return console.error("Error fetching technician:", error); };

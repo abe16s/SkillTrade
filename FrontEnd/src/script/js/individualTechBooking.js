@@ -1,5 +1,5 @@
-import {fetchTechnicianProfile} from './technicianFetch.js'
-import {postBookingToServer} from './BookingsFetch.js'
+import {fetchTechnicianProfile} from '../fetch/technicianFetch.js'
+import {postBookingToServer} from '../fetch/BookingsFetch.js'
 
 var techProfile = document.getElementsByClassName("profile-detail")[0];
 var allContainer = document.getElementsByClassName("all-container")[0];

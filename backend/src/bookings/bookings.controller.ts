@@ -61,16 +61,10 @@ export class BookingsController {
   @Patch(':id')
   @UseGuards(AuthGuard('jwt'))
   updateBooking(
-    @Req() request: Request,
     @Param('id', ParseIntPipe) id: number,
     @Body(ValidationPipe) bookingUpdate: UpdateBookingDto,
   ) {
-    const user = request.user;
-    // if (id === (user as { sub: number }).sub) {
-      return this.bookingsService.updateBooking(id, bookingUpdate);
-    // } else {
-      // throw new ForbiddenException('Access denied to Unauthorized user');
-    // }
+    return this.bookingsService.updateBooking(id, bookingUpdate);
   }
 
   @Delete(':id')
