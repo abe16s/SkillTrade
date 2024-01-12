@@ -5,7 +5,7 @@ import { UpdateBookingDto } from './dto/update-booking.dto';
 
 @Injectable()
 export class BookingsService {
-    constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
     async findAllTechnicianBookings(technicianId: number){
         const result = await this.prisma.technician.findUnique({
@@ -21,7 +21,7 @@ export class BookingsService {
     }
     async findAllCustomerBookings(customerId: number){
 
-      const result = await this.prisma.user.findUnique({
+      const result = await this.prisma.technician.findUnique({
         where: {
           id : customerId,
         },
@@ -38,63 +38,52 @@ export class BookingsService {
             id: id,
           },
         });
-      return results
-    
-    
-    }
+    return results
+  }
 
-    async createBooking(dto: CreateBookingDto){
-      const result = await this.prisma.booking.findUnique({
-            where : {
-                customerId_technicianId_serviceDate: {
-                    customerId: dto.customerId,
-                    technicianId: dto.technicianId,
-                    serviceDate: new Date(dto.serviceDate),
-                }
-                
-            }
-      })
-      if (!result){
-        const newBooking = await this.prisma.booking.create({
-              data: {
-                customerId: dto.customerId,
-                technicianId: dto.technicianId,
-                serviceDate: new Date(dto.serviceDate),
-                serviceNeeded: dto.serviceNeeded,
-                problemDescription: dto.problemDescription,
-                serviceLocation: dto.serviceLocation,
-                status:"pending",
-
-              },
-            });
-            return newBooking
-        }
-        
-        return {message: "Booking Already exists!"}
-        
-    }
-
-    async updateBooking(id: number, updatedBooking: UpdateBookingDto){
-      if ("serviceDate" in updatedBooking){
-        updatedBooking.serviceDate =new Date(updatedBooking.serviceDate)
-
-      }
-      return await this.prisma.booking.update({
-        where: {
-            id:id,
+  async createBooking(dto: CreateBookingDto) {
+    const result = await this.prisma.booking.findUnique({
+      where: {
+        customerId_technicianId_serviceDate: {
+          customerId: dto.customerId,
+          technicianId: dto.technicianId,
+          serviceDate: new Date(dto.serviceDate),
         },
-        data: updatedBooking,
-         
+      },
+    });
+    if (!result) {
+      const newBooking = await this.prisma.booking.create({
+        data: {
+          customerId: dto.customerId,
+          technicianId: dto.technicianId,
+          serviceDate: new Date(dto.serviceDate),
+          serviceNeeded: dto.serviceNeeded,
+          problemDescription: dto.problemDescription,
+          status: 'pending',
+        },
       });
-        
+      return newBooking;
     }
-   
-    async deleteBooking(id: number){
-        return await this.prisma.booking.delete({
-          where: {
-            id: id,
-          }
-        });
-    }
+    return { message: 'Booking Already exists!' };
+  }
 
+  async updateBooking(id: number, updatedBooking: UpdateBookingDto) {
+    if ('serviceDate' in updatedBooking) {
+      updatedBooking.serviceDate = new Date(updatedBooking.serviceDate);
+    }
+    return await this.prisma.booking.update({
+      where: {
+        id: id,
+      },
+      data: updatedBooking,
+    });
+  }
+
+  async deleteBooking(id: number) {
+    return await this.prisma.booking.delete({
+      where: {
+        id: id,
+      },
+    });
+  }
 }

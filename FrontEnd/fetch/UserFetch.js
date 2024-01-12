@@ -101,10 +101,10 @@ function signInUser(email, password, role) {
         localStorage.setItem("userRole", data.role);
         localStorage.setItem("userId", data.userId);
         if (data.role == "technician") {
-            console.log("Redirect to Technician Page");
+            window.location.href = "technician-profile.html" 
         }
         else {
-            console.log("Redirect to Customer Page");
+            window.location.href = "customer-profile.html" 
         }
     })
         .catch(function (error) { return console.error("Error signing in user!", error); });

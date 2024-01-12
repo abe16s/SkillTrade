@@ -45,19 +45,19 @@ export function postBookingToServer(bookedForTemp) {
 }
 //Read bookings
 //Get bookings specific to technician
-function readBookingsOfTechnicianFromServer() {
+export async function readBookingsOfTechnicianFromServer() {
     var technicianURL = "".concat(technicianBookingsAPI, "/").concat(localStorage.getItem("userId"));
-    fetch(technicianURL, {
-        method: 'GET',
-        headers: {
-            'Authorization': "Bearer ".concat(localStorage.getItem('jwtToken'))
-        }
-    })
-        .then(function (response) { return response.json(); })
-        .then(function (data) {
+    try {
+        let response = await fetch(technicianURL, {
+            method: 'GET',
+            headers: {
+                'Authorization': "Bearer ".concat(localStorage.getItem('jwtToken'))
+            }
+        })
+        let data = await response.json()
         console.log(data);
-    })
-        .catch(function (error) { return console.error("Error fetching bookings:", error); });
+        return data
+    } catch(error) { return console.error("Error fetching bookings:", error); };
 }
 //Get bookings specific to customer
 export async function readBookingsOfCustomerFromServer() {
@@ -86,15 +86,18 @@ function updateBooking() {
 }
 
 //Update booking on server
-export function updateBookingOnServer(updatedBookingChanges, bookingId ) {
-    var updateUrl = "".concat(bookingsAPI, "/").concat(bookingId);
+export function updateBookingOnServer(id, updates) {
+    console.log(id)
+    var updateUrl = "".concat(bookingsAPI, "/").concat(id);
+    console.log(id)
+    console.log(updates)
     fetch(updateUrl, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
             'Authorization': "Bearer ".concat(localStorage.getItem('jwtToken'))
         },
-        body: JSON.stringify(updatedBookingChanges),
+        body: JSON.stringify(updates),
     })
         .then(function (response) { return response.json(); })
         .then(function (data) {

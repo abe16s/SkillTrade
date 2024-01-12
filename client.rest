@@ -1,0 +1,146 @@
+###    ----------------- AUTHENTICATION -----------------
+
+
+        // The auhtorization is contained in each of the CRUD functions. Therefore,
+        // the authorization features are tested there!
+
+
+
+
+### Auth Signup ----> POST(CREATE)
+
+POST http://localhost:9000/trader/signup
+Content-Type: application/json
+
+{
+    "fullName": "Lemi Dinku",
+    "email": "lemi@gmail.com",
+    "phone": "091234839345",
+    "role": "technician",
+    "password": "helloworld",
+    "availableLocation": "6 Killo gibi",
+    "skills": "Electrical engineer",
+    "educationLevel": "Bachelor",
+    "experience": "2 years",
+    "additionalBio": "Nothing More!"
+}
+
+
+### Auth login -----> Authentication (POST)
+
+POST http://localhost:9000/trader/signin
+Content-Type: application/json
+
+{
+    "fullName": "Betsegaw Mesele",
+    "email": "betseeegaw@gmail.con",
+    "password": "password",
+    "role": "customer"
+}
+
+
+###        -----------------------  CRUD OPERATIONS --------------------
+
+// CUSTOMER
+
+### Browse Customer Profile(Data) ----> GET
+
+        // Authorization and Authentication Required
+        // Only the owner of the account can access
+
+GET http://localhost:9000/customer/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTcwNTA2Nzk4MCwiZXhwIjoxNzM2NjI1NTgwfQ.Nptx3J8PKBPMMVev5SxgvQHrokT51fCtVex8-ANhpJ4
+
+
+### Update Customer Profile (Data) -----> PATCH
+
+        // Authorization and Authentication Required
+        // Only the owner of the account can access
+
+PATCH http://localhost:9000/customer/8
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTcwNTA2Nzk4MCwiZXhwIjoxNzM2NjI1NTgwfQ.Nptx3J8PKBPMMVev5SxgvQHrokT51fCtVex8-ANhpJ4
+
+{
+    "fullName": "Betsegaw Mesele",
+    "email": "betseeegaw@gmail.con"
+}
+
+//TECHNICIAN
+
+### Technician Profile(Data) -----> GET
+
+        // Authorization and Authentication Required
+        // Only the owner of the account can access
+
+GET http://localhost:9000/technician/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJ0ZWNobmljaWFuIiwiaWF0IjoxNzA1MDY3NzQwLCJleHAiOjE3MzY2MjUzNDB9.OPxVBb3gMZllqVKGy1wGScPyIbrB6otih3aRRe4YG_E
+
+### Browse all Technicians
+
+GET http://localhost:9000/technician
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTcwNTA2Nzk4MCwiZXhwIjoxNzM2NjI1NTgwfQ.Nptx3J8PKBPMMVev5SxgvQHrokT51fCtVex8-ANhpJ4
+
+
+### Update Technician Profile -----> PATCH
+
+        // Authorization and Authentication Required
+        // Only the owner of the account can access
+
+PATCH http://localhost:9000/technician/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJ0ZWNobmljaWFuIiwiaWF0IjoxNzA1MDY3NzQwLCJleHAiOjE3MzY2MjUzNDB9.OPxVBb3gMZllqVKGy1wGScPyIbrB6otih3aRRe4YG_E
+
+{
+    "availableLocation": "6 Killo gibi, 5 Kilo gibi",
+    "skills": "Electrical engineer, Handy",
+    "educationLevel": "Masters",
+    "experience": "5 years",
+    "additionalBio": "Changed"
+}
+
+//BOOKINGS
+
+### Create Booking -----> POST(CREATE)
+
+        // Authorization and Authentication Required
+        // Only customers can create bookings
+
+POST http://localhost:9000/bookings 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTcwNTA2Nzk4MCwiZXhwIjoxNzM2NjI1NTgwfQ.Nptx3J8PKBPMMVev5SxgvQHrokT51fCtVex8-ANhpJ4
+Content-Type: application/json
+
+{
+    "customerId": 1,
+    "technicianId": 1,
+    "serviceDate": "1970-01-01T00:00:00.000Z",
+    "serviceNeeded": "I need someone to fix my door",
+    "problemDescription": "Why would I describe?",
+    "status": "pending",
+    "serviceLocation": "Sheger"      
+}
+
+### Browse Bookings of A Technician From Customers ----> GET
+
+        // Authorization and Authentication Required
+        // Only the owner of the account can access
+
+GET http://localhost:9000/bookings/technician/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJ0ZWNobmljaWFuIiwiaWF0IjoxNzA1MDY3NzQwLCJleHAiOjE3MzY2MjUzNDB9.OPxVBb3gMZllqVKGy1wGScPyIbrB6otih3aRRe4YG_E
+
+### Browse Bookings By A Customer -----> GET
+
+        // Authorization and Authentication Required
+        // Only the owner of the account can access
+
+GET http://localhost:9000/bookings/customer/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTcwNTA2Nzk4MCwiZXhwIjoxNzM2NjI1NTgwfQ.Nptx3J8PKBPMMVev5SxgvQHrokT51fCtVex8-ANhpJ4
+
+### Delete Booking ------> DELETE
+
+        // Authorization and Authentication Required
+        // Only the customer which is the owner of this specific account can
+        //   delete his/her bookings
+
+DELETE http://localhost:9000/bookings/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTcwNTA2Nzk4MCwiZXhwIjoxNzM2NjI1NTgwfQ.Nptx3J8PKBPMMVev5SxgvQHrokT51fCtVex8-ANhpJ4
