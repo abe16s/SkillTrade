@@ -21,7 +21,7 @@ export class BookingsService {
     }
     async findAllCustomerBookings(customerId: number){
 
-      const result = await this.prisma.technician.findUnique({
+      const result = await this.prisma.user.findUnique({
         where: {
           id : customerId,
         },

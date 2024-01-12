@@ -87,7 +87,6 @@ function updateBooking() {
 
 //Update booking on server
 export function updateBookingOnServer(id, updates) {
-    console.log(id)
     var updateUrl = "".concat(bookingsAPI, "/").concat(id);
     console.log(id)
     console.log(updates)
@@ -101,7 +100,8 @@ export function updateBookingOnServer(id, updates) {
     })
         .then(function (response) { return response.json(); })
         .then(function (data) {
-        alert("You have successfully updated your booking!")
+            alert("You have successfully updated your booking!")
+            console.log(data)
     })
         .catch(function (error) { return console.error("Error updating booking!", error); });
 }

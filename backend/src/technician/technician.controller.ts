@@ -20,17 +20,17 @@ import { Request } from 'express';
 export class TechnicianController {
   constructor(private readonly technicianService: TechnicianService) {}
   @Get(':id')
-  @UseGuards(AuthGuard('jwt'), IsTechnicianGuard)
+  @UseGuards(AuthGuard('jwt'))
   findTechnicianProfile(
     @Req() request: Request,
     @Param('id', ParseIntPipe) id: number,
   ) {
     const user = request.user;
-    if (id === (user as { sub: number }).sub) {
+    // if (id === (user as { sub: number }).sub) {
       return this.technicianService.findTechnicianProfile(id);
-    } else {
-      throw new ForbiddenException('Access denied to Unauthorized user');
-    }
+    // } else {
+    //   throw new ForbiddenException('Access denied to Unauthorized user');
+    // }
   }
 
   @Get()
