@@ -105,14 +105,14 @@ export class AuthService {
       role,
     };
     const token: any = await this.jwt.signAsync(payload, {
-      expiresIn: '120m',
+      expiresIn: '1y',
       secret: 'brothers',
     });
     return {
       access_token: token,
       role,
-      userId
-    }
+      userId,
+    };
   }
 
   validateToken(token: string): any {

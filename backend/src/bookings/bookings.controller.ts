@@ -76,14 +76,8 @@ export class BookingsController {
   @Delete(':id')
   @UseGuards(AuthGuard('jwt'), IsCustomerGuard)
   deleteBooking(
-    @Req() request: Request,
     @Param('id', ParseIntPipe) id: number,
   ) {
-    const user = request.user;
-    if (id === (user as { sub: number }).sub) {
       return this.bookingsService.deleteBooking(id);
-    } else {
-      throw new ForbiddenException('Access denied to Unauthorized user');
-    }
   }
 }

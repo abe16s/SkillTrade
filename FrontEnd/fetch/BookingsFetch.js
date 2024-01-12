@@ -101,7 +101,7 @@ export function updateBookingOnServer(id, updates) {
     })
         .then(function (response) { return response.json(); })
         .then(function (data) {
-        console.log(data);
+        alert("You have successfully updated your booking!")
     })
         .catch(function (error) { return console.error("Error updating booking!", error); });
 }

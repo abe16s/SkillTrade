@@ -36,13 +36,15 @@ export class TechnicianService {
         
     }
 
-    async updateTechnicianProfile(technicianId: number, profileUpdate: TechnicianDto){
-        return await this.prisma.technician.update({
-            where: {
-                id: technicianId,
-            },
-            data: profileUpdate,
-
-          });
-    }
+  async updateTechnicianProfile(
+    technicianId: number,
+    profileUpdate: TechnicianDto,
+  ) {
+    return await this.prisma.technician.update({
+      where: {
+        id: technicianId,
+      },
+      data: profileUpdate,
+    });
+  }
 }
