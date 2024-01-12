@@ -38,10 +38,8 @@ export class BookingsService {
             id: id,
           },
         });
-      return results
-    
-    
-    }
+    return results
+  }
 
   async createBooking(dto: CreateBookingDto) {
     const result = await this.prisma.booking.findUnique({
