@@ -92,14 +92,19 @@ export class AuthService {
     return this.tokenGenerate(user.id, user.fullName, user.role, user.email);
   }
 
-  async tokenGenerate(userId: number, fullName: string, role: string, email: string) {
+  async tokenGenerate(
+    userId: number,
+    fullName: string,
+    role: string,
+    email: string,
+  ) {
     const payload = {
       sub: userId,
       fullName,
       email,
       role,
     };
-    let token: any = await this.jwt.signAsync(payload, {
+    const token: any = await this.jwt.signAsync(payload, {
       expiresIn: '120m',
       secret: 'brothers',
     });

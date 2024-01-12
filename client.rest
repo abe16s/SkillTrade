@@ -1,0 +1,56 @@
+###-----------------Auth-----------------
+
+### Auth login
+POST http://localhost:9000/trader/signin
+Content-Type: application/json
+
+{
+    "fullName": "Betsegaw Mesele",
+    "email": "betseeegaw@gmail.co",
+    "password": "password",
+    "role": "customer"
+}
+
+
+### Auth Signup
+
+
+POST http://localhost:9000/trader/signup
+Content-Type: application/json
+
+{
+    "fullName": "Lemi Dinku",
+    "email": "lemi@gmail.com",
+    "phone": "091234839345",
+    "role": "technician",
+    "password": "helloworld",
+    "availableLocation": "6 Killo gibi",
+    "skills": "Electrical engineer",
+    "educationLevel": "Bachelor",
+    "experience": "2 years",
+    "additionalBio": "Nothing More!"
+}
+
+### Customer Dashboard
+
+GET http://localhost:9000/customer/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvIiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzA1MDQ1ODk5LCJleHAiOjE3MDUwNTMwOTl9.ZxWRCBjHdwOwkQsqMcPewHkGtPaTXavOx3Z2P-pZu0k
+
+
+### Technician Dashboard
+GET http://localhost:9000/technician/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvIiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzA1MDQ1ODk5LCJleHAiOjE3MDUwNTMwOTl9.ZxWRCBjHdwOwkQsqMcPewHkGtPaTXavOx3Z2P-pZu0k
+
+
+
+### Browse Bookings of A Technician
+GET http://localhost:9000/bookings/technician/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvIiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzA1MDQ1ODk5LCJleHAiOjE3MDUwNTMwOTl9.ZxWRCBjHdwOwkQsqMcPewHkGtPaTXavOx3Z2P-pZu0k
+
+### Browse Bookings of A Customer
+
+GET http://localhost:9000/bookings/customer/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvIiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzA1MDQ1ODk5LCJleHAiOjE3MDUwNTMwOTl9.ZxWRCBjHdwOwkQsqMcPewHkGtPaTXavOx3Z2P-pZu0k
+
+### 
+
