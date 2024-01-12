@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
-    <title>Custemer-pro</title>
+    <title>Customer Dashboard</title>
   </head>
   <body>
     <nav>
@@ -33,130 +33,15 @@
             class="profile-pic"
           />
 
-          <div class="info">
-            <h2>Customer Information</h2>
-            <p>Name: John Doe</p>
-            <p>Email: john@example.com</p>
-            <!-- Add more customer details as needed -->
+          <div class="basic-info">
+            
           </div>
         </div>
       </div>
 
       <div class="previous-bookings">
-        <div class="booking-item">
-          <h2>Bookings</h2>
-          <div class="tecntians">
-            <div>
-              <h3>Mamo Demsew</h3>
-              <h5>Specialty: Dish Network technician</h5>
-              <h5>Phone:+25184678397</h5>
-              <h5>Email:mamodemsew@email.com</h5>
-            </div>
-            <div>
-              <form
-                class="service-form"
-                id="serviceForm"
-                onsubmit="return false"
-              >
-                <label for="bookedDate" class="form-label"
-                  ><strong>Booked Date</strong>:</label
-                >
-                <input
-                  type="text"
-                  id="bookedDate"
-                  name="bookedDate"
-                  class="form-input"
-                  value="January 1, 2023"
-                  required
-                  disabled
-                />
-
-                <label for="serviceDate" class="form-label"
-                  ><strong>Service Date</strong>:</label
-                >
-                <input
-                  type="text"
-                  id="serviceDate"
-                  name="serviceDate"
-                  class="form-input"
-                  value="January 5, 2023"
-                  required
-                  disabled
-                />
-
-                <label for="serviceNeeded" class="form-label"
-                  ><strong>Service Needed</strong>:</label
-                >
-                <input
-                  type="text"
-                  id="serviceNeeded"
-                  name="serviceNeeded"
-                  class="form-input"
-                  value="Repair"
-                  required
-                  disabled
-                />
-
-                <label for="problemDescription" class="form-label"
-                  ><strong>Problem Description</strong>:</label
-                >
-                <textarea
-                  id="problemDescription"
-                  name="problemDescription"
-                  class="form-textarea"
-                  rows="4"
-                  required
-                  disabled
-                >
-Description of the problem</textarea
-                >
-
-                <label for="serviceLocation" class="form-label"
-                  ><strong>Service Location</strong>:</label
-                >
-                <input
-                  type="text"
-                  id="serviceLocation"
-                  name="serviceLocation"
-                  class="form-input"
-                  value="Address"
-                  required
-                  disabled
-                />
-
-                <label for="status" class="form-label"
-                  ><strong>Status</strong>:</label
-                >
-
-                <input
-                  type="text"
-                  id="status"
-                  name="status"
-                  class="form-input"
-                  value="Pending"
-                  required
-                  disabled
-                />
-
-                <button class="form-button edit" onclick="editForm()">
-                  edit
-                </button>
-                <button
-                  class="form-button button_is_hidden save"
-                  onclick="saveForm()"
-                >
-                  save
-                </button>
-                <button
-                  class="form-button button_is_hidden cancel-button cancel"
-                  onclick="cancelForm()"
-                >
-                  cancel
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
+        <h2>Bookings</h2>
+        
       </div>
     </div>
     <footer class="footer">
@@ -193,41 +78,6 @@ Description of the problem</textarea
         </div>
       </div>
     </footer>
-    <script>
-      var editButton = document.querySelector(".edit");
-      var saveButton = document.querySelector(".save");
-      var cancelButton = document.querySelector(".cancel");
-
-      function saveForm() {
-        enableFormFields(false);
-        saveButton.classList.toggle("button_is_hidden");
-        cancelButton.classList.toggle("button_is_hidden");
-        editButton.classList.toggle("button_is_hidden");
-      }
-
-      function editForm() {
-        enableFormFields(true);
-        saveButton.classList.toggle("button_is_hidden");
-        cancelButton.classList.toggle("button_is_hidden");
-        editButton.classList.toggle("button_is_hidden");
-      }
-
-      function cancelForm() {
-        document.getElementById("serviceForm").reset();
-        enableFormFields(false);
-        saveButton.classList.toggle("button_is_hidden");
-        cancelButton.classList.toggle("button_is_hidden");
-        editButton.classList.toggle("button_is_hidden");
-      }
-
-      function enableFormFields(enable) {
-        var form = document.getElementById("serviceForm");
-        var formElements = form.elements;
-
-        for (var i = 1; i < formElements.length - 4; i++) {
-          formElements[i].disabled = !enable;
-        }
-      }
-    </script>
+    <script type="module" src="../fetch/customerDashboard.js"></script>
   </body>
 </html>
