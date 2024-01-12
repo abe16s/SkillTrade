@@ -61,7 +61,7 @@ Content-Type: application/json
 {
     "fullName": "Abenezer Betsegaw",
     "email": "kalebo@gmail.com",
-    "password": "password",
+    "password": "123",
     "role": "technician"
 }
 
@@ -102,7 +102,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOY
         // Only the owner of the account can access
 
 GET http://localhost:9000/technician/8
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJ0ZWNobmljaWFuIiwiaWF0IjoxNzA1MDY3NzQwLCJleHAiOjE3MzY2MjUzNDB9.OPxVBb3gMZllqVKGy1wGScPyIbrB6otih3aRRe4YG_E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImZ1bGxOYW1lIjoiQWJlbmV6ZXIgQmV0c2VnYXciLCJlbWFpbCI6ImthbGVib0BnbWFpbC5jb20iLCJyb2xlIjoidGVjaG5pY2lhbiIsImlhdCI6MTcwNTA5MzE0NSwiZXhwIjoxNzM2NjUwNzQ1fQ.ZbwJliyUcSMy5yL6MqvnPOleD51oxnRiK77NkDebAKQ
 
 ### Browse all Technicians
 
@@ -117,7 +117,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOY
 
 PATCH http://localhost:9000/technician/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJ0ZWNobmljaWFuIiwiaWF0IjoxNzA1MDY3NzQwLCJleHAiOjE3MzY2MjUzNDB9.OPxVBb3gMZllqVKGy1wGScPyIbrB6otih3aRRe4YG_E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImZ1bGxOYW1lIjoiQWJlbmV6ZXIgQmV0c2VnYXciLCJlbWFpbCI6ImthbGVib0BnbWFpbC5jb20iLCJyb2xlIjoidGVjaG5pY2lhbiIsImlhdCI6MTcwNTA5MzE0NSwiZXhwIjoxNzM2NjUwNzQ1fQ.ZbwJliyUcSMy5yL6MqvnPOleD51oxnRiK77NkDebAKQ
 
 {
     "availableLocation": "6 Killo gibi, 5 Kilo gibi",
@@ -154,7 +154,7 @@ Content-Type: application/json
         // Only the owner of the account can access
 
 GET http://localhost:9000/bookings/technician/8
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJ0ZWNobmljaWFuIiwiaWF0IjoxNzA1MDY3NzQwLCJleHAiOjE3MzY2MjUzNDB9.OPxVBb3gMZllqVKGy1wGScPyIbrB6otih3aRRe4YG_E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImZ1bGxOYW1lIjoiQWJlbmV6ZXIgQmV0c2VnYXciLCJlbWFpbCI6ImthbGVib0BnbWFpbC5jb20iLCJyb2xlIjoidGVjaG5pY2lhbiIsImlhdCI6MTcwNTA5MzE0NSwiZXhwIjoxNzM2NjUwNzQ1fQ.ZbwJliyUcSMy5yL6MqvnPOleD51oxnRiK77NkDebAKQ
 
 ### Browse Bookings By A Customer -----> GET
 
