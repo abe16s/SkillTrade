@@ -1,6 +1,6 @@
 let customerAPI = 'http://localhost:9000/customer';
-export async function fetchCustomerProfile() {
-    var custAPI = "".concat(customerAPI, "/").concat(localStorage.getItem("userId"));
+export async function fetchCustomerProfile(id) {
+    var custAPI = "".concat(customerAPI, "/").concat(id);
     try {
         const response = await fetch(custAPI, {
             method: 'GET',

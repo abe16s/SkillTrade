@@ -9,7 +9,7 @@ import { Request } from 'express';
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) { }
   @Get(':id')
-  @UseGuards(AuthGuard('jwt'), IsCustomerGuard)
+  @UseGuards(AuthGuard('jwt'))
   findCustomerProfile(
     @Req() request: Request,
     @Param('id', ParseIntPipe) id: number,
