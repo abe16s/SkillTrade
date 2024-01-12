@@ -5,6 +5,16 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class TechnicianService {
     constructor(private readonly prisma: PrismaService) {}
+    async findAllTechnicianProfiles(){
+        const result = await this.prisma.technician.findMany({
+            select: {
+                fullName: true,
+                skills: true,
+                id: true,
+            }
+        })
+        return result
+    }
     async findTechnicianProfile(technicianId: number) {
         const result = await this.prisma.technician.findUnique({
             where: {

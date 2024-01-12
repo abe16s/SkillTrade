@@ -7,14 +7,21 @@ import { IsTechnicianGuard} from 'src/auth/guards';
 @Controller('technician')
 export class TechnicianController {
     constructor(private readonly technicianService: TechnicianService) { }
+
+    @Get()
+    // @UseGuards(AuthGuard('jwt'))
+    findAllTechnicianProfiles(){
+        return this.technicianService.findAllTechnicianProfiles()
+    }
+
     @Get(':id')
-    @UseGuards(AuthGuard('jwt'), IsTechnicianGuard)
+    @UseGuards(AuthGuard('jwt'))
     findTechnicianProfile(@Param('id', ParseIntPipe) id: number){
         return this.technicianService.findTechnicianProfile(id)
     }
 
     @Patch(':id')
-    // @UseGuards(AuthGuard('jwt'), IsTechnicianGuard)
+    @UseGuards(AuthGuard('jwt'), IsTechnicianGuard)
     updateTechnicianProfile(@Param('id', ParseIntPipe) id: number, @Body(ValidationPipe) profileUpdate: TechnicianDto){
         return this.technicianService.updateTechnicianProfile(id, profileUpdate)
     }
