@@ -13,7 +13,32 @@ Web Development Course Group Project 2023/24 G.C
 4. Kaleb Asratemedhin Bekele    UGR/9104/14
 </pre>
 
-## Description
+## How to run the project
+After cloning the project
+1. Go to the backend directory
+<pre>cd backend</pre>
+
+2. install all the dependencies
+<pre>npm install</pre>
+
+3. Open docker desktop and start the docker engine
+4. Compose the database on docker
+<pre>docker compose up dev-db -d</pre>
+
+5. Migrate the database schema
+<pre>npx prisma migrate dev</pre>
+
+6. Start the backend server
+<pre>npm run start:dev</pre>
+
+7. Go to frontend directory and open the index.html file
+
+#### Why we choose PostgreSQL 
+i) PostgreSQL offers a wide range of advanced features, including support for complex queries, indexing, transactions, and foreign keys. It also supports various data types, including custom types and indexing mechanisms.
+ii) PostgreSQL is designed to scale horizontally and vertically. It supports both read and write scaling strategies, making it suitable for a wide range of applications, from small projects to large enterprise-level systems.
+iii) PostgreSQL is a relational database and relational databases enforce data integrity through features such as primary keys, foreign keys, and constraints. This ensures that data is accurate, consistent, and complies with the defined rules.
+
+## Description of the website
 This hub is designed to simplify the process of connecting skilled trade technicians with customers seeking home installation like Dish Network technician, Plumber, Carpenter, Electrician, Mason, Landscaper/Gardener, HVAC Technician, Roofing Contractor, Mechanic and etc to installation and maintenance services. It serves as a bridge between professionals adept in various technical skills and individuals in need of these services within their homes.
 
 ## How It Works
