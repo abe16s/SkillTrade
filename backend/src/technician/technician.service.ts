@@ -25,6 +25,7 @@ export class TechnicianService {
                 skills: true,
                 phone: true,
                 experience: true,
+                email: true,
                 educationLevel: true,
                 availableLocation: true,
                 additionalBio: true,

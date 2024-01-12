@@ -1,6 +1,7 @@
 import {fetchCustomerProfile} from "./CustomerFetch.js"
 import {readBookingsOfCustomerFromServer, deleteBookingFromServer} from "./BookingsFetch.js"
 import {fetchTechnicianProfile} from './technicianFetch.js'
+import {updateBookingOnServer} from './BookingsFetch.js'
 
 let infoDiv = document.getElementsByClassName("basic-info")[0]
 let customerData = await fetchCustomerProfile()
@@ -17,6 +18,12 @@ function saveForm(id) {
     saveButton.classList.toggle("button_is_hidden");
     cancelButton.classList.toggle("button_is_hidden");
     editButton.classList.toggle("button_is_hidden");
+    updateBookingOnServer(unsavedChanges, id)
+
+
+
+
+
 }
 function editForm(id) {
     let editButton = document.getElementById("booking-"+id).querySelector('.edit'); 
@@ -27,6 +34,7 @@ function editForm(id) {
     saveButton.classList.toggle("button_is_hidden");
     cancelButton.classList.toggle("button_is_hidden");
     editButton.classList.toggle("button_is_hidden");
+
 }
 
 function cancelForm(id) {
@@ -38,7 +46,7 @@ function cancelForm(id) {
     saveButton.classList.toggle("button_is_hidden");
     cancelButton.classList.toggle("button_is_hidden");
     editButton.classList.toggle("button_is_hidden");
-}
+  }
 
 function enableFormFields(enable, id) {
   let form = document.getElementById("serviceForm-"+id);
@@ -56,6 +64,17 @@ function deleteBooking(id){
     deleteBookingFromServer(id)
     bookingToBeDeleted.remove()
   }
+}
+let unsavedChanges = {}
+function recordBookingChanges(e, customerId){
+  unsavedChanges[e.target.name] = e.target.value
+  // if (e.target.name == "serviceDate"){
+  //   e.target.type = "date"
+  // }
+  // alert( e.target.name)
+  console.log(unsavedChanges)
+  // unsavedChanges[key] = document.getElementById(key).value
+
 }
 
 let customerBookings = await readBookingsOfCustomerFromServer();
@@ -79,19 +98,21 @@ for (let i = customerBookings.length -1; i >= 0 ; i--) {
     </div>
     <div>
       <form
-        class="service-form"
+        class="service-form changeable-input "
         id="serviceForm-${customerBookings[i].id}"
         onsubmit="return false"
+        
       >
         <label for="bookedDate" class="form-label"
           ><strong>Booked Date</strong>:</label
         >
         <input
-          type="text"
+          type="date"
           id="bookedDate-${customerBookings[i].id}"
           name="bookedDate"
-          class="form-input"
-          value="${customerBookings[i].createdDate}"
+          class="form-input "
+
+          value="${new Date(customerBookings[i].createdDate).toISOString().split("T")[0]}"
           required
           disabled
         />
@@ -100,11 +121,11 @@ for (let i = customerBookings.length -1; i >= 0 ; i--) {
           ><strong>Service Date</strong>:</label
         >
         <input
-          type="text"
+          type="date"
           id="serviceDate-${customerBookings[i].id}"
           name="serviceDate"
-          class="form-input"
-          value="${customerBookings[i].serviceDate}"
+          class="form-input update-booking-time "
+          value="${new Date(customerBookings[i].serviceDate).toISOString().split("T")[0]}"
           required
           disabled
         />
@@ -116,7 +137,7 @@ for (let i = customerBookings.length -1; i >= 0 ; i--) {
           type="text"
           id="serviceNeeded-${customerBookings[i].id}"
           name="serviceNeeded"
-          class="form-input"
+          class="form-input "
           value="${customerBookings[i].serviceNeeded}"
           required
           disabled
@@ -128,7 +149,7 @@ for (let i = customerBookings.length -1; i >= 0 ; i--) {
         <textarea
           id="problemDescription-${customerBookings[i].id}"
           name="problemDescription"
-          class="form-textarea"
+          class="form-textarea "
           rows="4"
           required
           disabled
@@ -140,7 +161,7 @@ for (let i = customerBookings.length -1; i >= 0 ; i--) {
           type="text"
           id="serviceLocation-${temp.id}"
           name="serviceLocation"
-          class="form-input"
+          class="form-input "
           value="${customerBookings[i].serviceLocation}"
           required
           disabled
@@ -178,4 +199,7 @@ for (let i = customerBookings.length -1; i >= 0 ; i--) {
   temp.querySelector(".cancel").addEventListener("click", () => cancelForm(customerBookings[i].id))
   temp.querySelector(".save").addEventListener("click", () => saveForm(customerBookings[i].id))
   temp.querySelector(".booking-delete").addEventListener("click", () => deleteBooking(customerBookings[i].id))
+  temp.querySelector(".changeable-input").addEventListener('change',(e) => recordBookingChanges(e, customerBookings[i].id))
 }
+
+// let unsavedChanges = {}

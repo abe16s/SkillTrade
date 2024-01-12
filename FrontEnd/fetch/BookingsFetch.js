@@ -84,10 +84,10 @@ function updateBooking() {
         // bookingToBeUpdated.innerHTML = createBooking(booking, tempTechnician, tempCustomer).innerHTML
     }
 }
-var updatedBookingChanges = { "serviceDate": "2030-01-10", "serviceNeeded": "Wha'ever" };
+
 //Update booking on server
-function updateBookingOnServer() {
-    var updateUrl = "".concat(bookingsAPI, "/").concat(6);
+export function updateBookingOnServer(updatedBookingChanges, bookingId ) {
+    var updateUrl = "".concat(bookingsAPI, "/").concat(bookingId);
     fetch(updateUrl, {
         method: "PATCH",
         headers: {
@@ -98,7 +98,7 @@ function updateBookingOnServer() {
     })
         .then(function (response) { return response.json(); })
         .then(function (data) {
-        console.log(data);
+        alert("You have successfully updated your booking!")
     })
         .catch(function (error) { return console.error("Error updating booking!", error); });
 }
