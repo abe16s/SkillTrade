@@ -605,6 +605,18 @@ width: 100%;
   margin:10px;
   
 }
+.profile-input{
+  display: flex;
+  align-items: center;
+
+  
+}
+.profile-input input{
+  flex-grow: 1;
+}
+.profile-input label{
+  font-weight: bolder;
+}
 .controls{
   display: flex;
   justify-content: space-evenly;

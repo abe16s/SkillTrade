@@ -123,14 +123,11 @@ function updateProfile(user, updatedProfileChanges) {
     })
         .then(function (response) { return response.json(); })
         .then(function (data) {
+            alert("You have successfully updated your profile!")
             return data
     })
         .catch(function (error) { return console.error("Error updating profile!", error); });
 }
-
-/*=========================================================================
-        KAB
-===========================================================================*/
 
 // fetch for user profile
 async function fetchUserProfile(id){
@@ -162,24 +159,47 @@ function recordChanges(key){
     unsavedChanges[key] = document.getElementById(key).value
 
 }
-let technicianId= 1;
-function updateHandler(event){
-    technicianId = parseInt(event.target.id)
+
+let technicianId= localStorage.getItem("userId")
+
+function formInputDisabler(enable){
+    for (let i = 0; i < 8; i++) {
+        console.log(profile.querySelector(".input-"+i))
+        if (i != 4){
+            profile.querySelector(".input-"+i).disabled = !enable;
+
+        }
+        
+    }
+
+}
+function updateHandler(event, enable){
     saveUpdatedBtn.classList.toggle("is_hidden")
     cancelUpdatedBtn.classList.toggle("is_hidden")
     profileUpdateBtn.classList.toggle("is_hidden")
+    formInputDisabler(true)
+    console.log(profile)
 
-
-}
+}   
 async function displayProfile(){
 
     result = await fetchUserProfile(technicianId)
-    
+    labels = {
+        fullName: "Full name",
+        skills: "Skills",
+        phone: "Phone",
+        experience: "Experience",
+        email: "Email",
+        educationLevel: "Educational level",
+        availableLocation: "Available location",
+        additionalBio: "Additional bio"
+    }
+    let i = 0;
     Object.entries(result).map(([key, value]) => {
         let field = document.createElement("div")
-          field.innerHTML = `<div key=${key}>
-          <label for=${key}>${key}</label>
-          <input class="inputRow" onchange="recordChanges('${key}','${result}')" value ='${value}' id=${key} />
+          field.innerHTML = `<div class="profile-input" key=${key}>
+          <label for=${key}>${labels[key]}</label>
+          <input class="inputRow input-${i++}" onchange="recordChanges('${key}','${result}')" value ='${value}' id=${key} disabled />
         </div>`
         profile.appendChild(field)
 
@@ -193,6 +213,7 @@ function saveUpdated(event){
     saveUpdatedBtn.classList.toggle("is_hidden")
     cancelUpdatedBtn.classList.toggle("is_hidden")
     profileUpdateBtn.classList.toggle("is_hidden")
+    formInputDisabler(false)
 
 }
 
@@ -202,10 +223,9 @@ function cancelUpdating(event){
     saveUpdatedBtn.classList.toggle("is_hidden")
     cancelUpdatedBtn.classList.toggle("is_hidden")
     profileUpdateBtn.classList.toggle("is_hidden")
+    formInputDisabler(false)
 }
 
-
-//======================================================================
 
 // Manipulate DOM
 let customerBtn = document.getElementById("customer-signup");
