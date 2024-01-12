@@ -45,5 +45,5 @@ for (let i = techniciansBookings.length-1; i >= 0; i--) {
 function changeStatus(id, status) {
 
     updateBookingOnServer(id, {"status": status})
-    window.location.reload();
+    // window.location.reload();
 }

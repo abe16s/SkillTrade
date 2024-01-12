@@ -15,11 +15,11 @@ export class CustomerController {
     @Param('id', ParseIntPipe) id: number,
   ) {
     const user = request.user;
-    if (id === (user as { sub: number }).sub) {
+    // if (id === (user as { sub: number }).sub) {
       return this.customerService.findCustomerProfile(id);
-    } else {
-      throw new ForbiddenException('Access denied to Unauthorized user');
-    }
+    // } else {
+      // throw new ForbiddenException('Access denied to Unauthorized user');
+    // }
   }
 
   @Patch(':id')

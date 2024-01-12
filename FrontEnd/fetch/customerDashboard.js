@@ -18,7 +18,7 @@ function saveForm(id) {
     saveButton.classList.toggle("button_is_hidden");
     cancelButton.classList.toggle("button_is_hidden");
     editButton.classList.toggle("button_is_hidden");
-    updateBookingOnServer(unsavedChanges, id)
+    updateBookingOnServer(id, unsavedChanges)
 
 
 

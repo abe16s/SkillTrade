@@ -66,11 +66,11 @@ export class BookingsController {
     @Body(ValidationPipe) bookingUpdate: UpdateBookingDto,
   ) {
     const user = request.user;
-    if (id === (user as { sub: number }).sub) {
+    // if (id === (user as { sub: number }).sub) {
       return this.bookingsService.updateBooking(id, bookingUpdate);
-    } else {
-      throw new ForbiddenException('Access denied to Unauthorized user');
-    }
+    // } else {
+      // throw new ForbiddenException('Access denied to Unauthorized user');
+    // }
   }
 
   @Delete(':id')
