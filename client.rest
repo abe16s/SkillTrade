@@ -7,17 +7,17 @@
 
 
 
-### Auth Signup ----> POST(CREATE)
+### Technician Signup ----> POST(CREATE)
 
 POST http://localhost:9000/trader/signup
 Content-Type: application/json
 
 {
-    "fullName": "Lemi Dinku",
-    "email": "lemi@gmail.com",
-    "phone": "091234839345",
+    "fullName": "Abenezer Betsegaw",
+    "email": "kalebo@gmail.com",
+    "phone": "0912348393454",
     "role": "technician",
-    "password": "helloworld",
+    "password": "123",
     "availableLocation": "6 Killo gibi",
     "skills": "Electrical engineer",
     "educationLevel": "Bachelor",
@@ -26,17 +26,45 @@ Content-Type: application/json
 }
 
 
-### Auth login -----> Authentication (POST)
+### Customer Signup ----> POST(CREATE)
+
+POST http://localhost:9000/trader/signup
+Content-Type: application/json
+
+{
+    "fullName": "Biniyam Betsegaw",
+    "email": "kalu@gmail.com",
+    "phone": "091234839345",
+    "role": "customer",
+    "password": "123"
+}
+
+
+### Customer login -----> Authentication (POST)
 
 POST http://localhost:9000/trader/signin
 Content-Type: application/json
 
 {
-    "fullName": "Betsegaw Mesele",
-    "email": "betseeegaw@gmail.con",
-    "password": "password",
+    "fullName": "Biniyam Betsegaw",
+    "email": "kalu@gmail.com",
+    "password": "123",
     "role": "customer"
 }
+
+
+### Technician login -----> Authentication (POST)
+
+POST http://localhost:9000/trader/signin
+Content-Type: application/json
+
+{
+    "fullName": "Abenezer Betsegaw",
+    "email": "kalebo@gmail.com",
+    "password": "password",
+    "role": "technician"
+}
+
 
 
 ###        -----------------------  CRUD OPERATIONS --------------------
@@ -59,7 +87,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOY
 
 PATCH http://localhost:9000/customer/8
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTcwNTA2Nzk4MCwiZXhwIjoxNzM2NjI1NTgwfQ.Nptx3J8PKBPMMVev5SxgvQHrokT51fCtVex8-ANhpJ4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOYW1lIjoiQmluaXlhbSBCZXRzZWdhdyIsImVtYWlsIjoia2FsdUBnbWFpbC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE3MDUwOTI5MzIsImV4cCI6MTczNjY1MDUzMn0.iKvVXAd6QEnIQd9x0jIaIFvuBK-Tw4hzOkLUKsU06_g
 
 {
     "fullName": "Betsegaw Mesele",
@@ -79,7 +107,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOY
 ### Browse all Technicians
 
 GET http://localhost:9000/technician
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTcwNTA2Nzk4MCwiZXhwIjoxNzM2NjI1NTgwfQ.Nptx3J8PKBPMMVev5SxgvQHrokT51fCtVex8-ANhpJ4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOYW1lIjoiQmluaXlhbSBCZXRzZWdhdyIsImVtYWlsIjoia2FsdUBnbWFpbC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE3MDUwOTI5MzIsImV4cCI6MTczNjY1MDUzMn0.iKvVXAd6QEnIQd9x0jIaIFvuBK-Tw4hzOkLUKsU06_g
 
 
 ### Update Technician Profile -----> PATCH
@@ -107,7 +135,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOY
         // Only customers can create bookings
 
 POST http://localhost:9000/bookings 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTcwNTA2Nzk4MCwiZXhwIjoxNzM2NjI1NTgwfQ.Nptx3J8PKBPMMVev5SxgvQHrokT51fCtVex8-ANhpJ4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOYW1lIjoiQmluaXlhbSBCZXRzZWdhdyIsImVtYWlsIjoia2FsdUBnbWFpbC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE3MDUwOTI5MzIsImV4cCI6MTczNjY1MDUzMn0.iKvVXAd6QEnIQd9x0jIaIFvuBK-Tw4hzOkLUKsU06_g
 Content-Type: application/json
 
 {
@@ -134,7 +162,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOY
         // Only the owner of the account can access
 
 GET http://localhost:9000/bookings/customer/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTcwNTA2Nzk4MCwiZXhwIjoxNzM2NjI1NTgwfQ.Nptx3J8PKBPMMVev5SxgvQHrokT51fCtVex8-ANhpJ4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOYW1lIjoiQmluaXlhbSBCZXRzZWdhdyIsImVtYWlsIjoia2FsdUBnbWFpbC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE3MDUwOTI5MzIsImV4cCI6MTczNjY1MDUzMn0.iKvVXAd6QEnIQd9x0jIaIFvuBK-Tw4hzOkLUKsU06_g
 
 ### Delete Booking ------> DELETE
 
@@ -143,4 +171,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOY
         //   delete his/her bookings
 
 DELETE http://localhost:9000/bookings/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImZ1bGxOYW1lIjoiQmV0c2VnYXcgTWVzZWxlIiwiZW1haWwiOiJiZXRzZWVlZ2F3QGdtYWlsLmNvbiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTcwNTA2Nzk4MCwiZXhwIjoxNzM2NjI1NTgwfQ.Nptx3J8PKBPMMVev5SxgvQHrokT51fCtVex8-ANhpJ4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImZ1bGxOYW1lIjoiQmluaXlhbSBCZXRzZWdhdyIsImVtYWlsIjoia2FsdUBnbWFpbC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE3MDUwOTI5MzIsImV4cCI6MTczNjY1MDUzMn0.iKvVXAd6QEnIQd9x0jIaIFvuBK-Tw4hzOkLUKsU06_g

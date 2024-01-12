@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CustomerDto } from './dto/customer.dto';
 
@@ -14,12 +14,17 @@ export class CustomerService {
     return result;
   }
 
-  async updateCustomerProfile(customerId: number, profileUpdate: CustomerDto){
-    return await this.prisma.user.update({
-      where: {
-        id: customerId,
-      },
-      data: profileUpdate,
-    });
+  async updateCustomerProfile(customerId: number, profileUpdate: CustomerDto) {
+    try{
+      return await this.prisma.user.update({
+        where: {
+          id: customerId,
+        },
+        data: profileUpdate,
+      });
+    }catch {
+      throw new NotFoundException('No user With the Specified Data')
+    }
+    
   }
 }

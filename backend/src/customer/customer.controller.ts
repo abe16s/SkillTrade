@@ -10,16 +10,8 @@ export class CustomerController {
   constructor(private readonly customerService: CustomerService) { }
   @Get(':id')
   @UseGuards(AuthGuard('jwt'))
-  findCustomerProfile(
-    @Req() request: Request,
-    @Param('id', ParseIntPipe) id: number,
-  ) {
-    const user = request.user;
-    // if (id === (user as { sub: number }).sub) {
-      return this.customerService.findCustomerProfile(id);
-    // } else {
-      // throw new ForbiddenException('Access denied to Unauthorized user');
-    // }
+  findCustomerProfile(@Param('id', ParseIntPipe) id: number) {
+    return this.customerService.findCustomerProfile(id);
   }
 
   @Patch(':id')
