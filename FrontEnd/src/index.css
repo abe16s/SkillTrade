@@ -527,12 +527,13 @@ textarea {
 .profile-info,
 .previous-bookings {
   margin-bottom: 30px;
-  justify-content: space-between;
+ 
 }
 
 .profile-details {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .profile-pic {
@@ -540,6 +541,32 @@ textarea {
   height: 150px;
   border-radius: 50%;
   margin-right: 20px;
+}
+
+.updated-profile-card{
+padding: 10px;
+margin-left: 10px;
+width: 100%;
+}
+.inputRow{
+  margin: 5px;
+}
+.is_hidden{
+  display: none;
+}
+
+.full-technician-profile{
+  margin:10px;
+  
+}
+.controls{
+  display: flex;
+  justify-content: space-evenly;
+
+}
+.controls button{
+  width: 40%
+
 }
 
 .info {
