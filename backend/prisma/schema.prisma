@@ -19,6 +19,7 @@ model User {
   password String
   requests Json[]    @default([])
   bookings Booking[]
+  reviews Review[]
 
   createdAt DateTime  @default(now())
   lastLogin DateTime?
@@ -41,6 +42,7 @@ model Technician {
   additionalBio     String? @db.Text
 
   bookings  Booking[]
+  reviews Review[]
   createdAt DateTime  @default(now())
   lastLogin DateTime?
 }
@@ -59,4 +61,15 @@ model Booking {
   technician         Technician @relation(fields: [technicianId], references: [id])
 
   @@unique([customerId, technicianId, serviceDate])
+}
+
+model Review {
+  id Int @id @default(autoincrement())
+  customerId         Int
+  technicianId       Int
+  createdDate        DateTime   @default(now())
+  rate Float?
+  review String? @db.Text
+  user               User       @relation(fields: [customerId], references: [id])
+  technician         Technician @relation(fields: [technicianId], references: [id])
 }
