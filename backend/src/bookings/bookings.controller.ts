@@ -69,9 +69,7 @@ export class BookingsController {
 
   @Delete(':id')
   @UseGuards(AuthGuard('jwt'), IsCustomerGuard)
-  deleteBooking(
-    @Param('id', ParseIntPipe) id: number,
-  ) {
-      return this.bookingsService.deleteBooking(id);
+  deleteBooking(@Param('id', ParseIntPipe) id: number) {
+    return this.bookingsService.deleteBooking(id);
   }
 }

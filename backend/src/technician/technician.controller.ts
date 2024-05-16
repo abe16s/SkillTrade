@@ -27,7 +27,7 @@ export class TechnicianController {
   ) {
     const user = request.user;
     // if (id === (user as { sub: number }).sub) {
-      return this.technicianService.findTechnicianProfile(id);
+    return this.technicianService.findTechnicianProfile(id);
     // } else {
     //   throw new ForbiddenException('Access denied to Unauthorized user');
     // }
