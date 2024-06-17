@@ -4,7 +4,7 @@ import { AuthDto } from './dto';
 import * as argon from 'argon2';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { JwtService } from '@nestjs/jwt';
-import * as jwtEx from 'jsonwebtoken'
+import * as jwtEx from 'jsonwebtoken';
 
 @Injectable()
 export class AuthService {
@@ -50,7 +50,7 @@ export class AuthService {
           email: true,
         },
       });
-      console.log(user)
+      console.log(user);
       return user;
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {

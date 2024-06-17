@@ -7,38 +7,35 @@ import { UpdateBookingDto } from './dto/update-booking.dto';
 export class BookingsService {
   constructor(private readonly prisma: PrismaService) {}
 
-    async findAllTechnicianBookings(technicianId: number){
-        const result = await this.prisma.technician.findUnique({
-          where: {
-            id : technicianId,
-          },
-          select: {
-            bookings: true,
-          },
-        })
-        return result
-
-    }
-    async findAllCustomerBookings(customerId: number){
-
-      const result = await this.prisma.user.findUnique({
-        where: {
-          id : customerId,
-        },
-        select: {
-          bookings: true,
-        },
-      })
-      return result
-
-    }
-    async findOneBooking(id: number){
-      const results = await this.prisma.booking.findUnique({
-          where: {
-            id: id,
-          },
-        });
-    return results
+  async findAllTechnicianBookings(technicianId: number) {
+    const result = await this.prisma.technician.findUnique({
+      where: {
+        id: technicianId,
+      },
+      select: {
+        bookings: true,
+      },
+    });
+    return result;
+  }
+  async findAllCustomerBookings(customerId: number) {
+    const result = await this.prisma.user.findUnique({
+      where: {
+        id: customerId,
+      },
+      select: {
+        bookings: true,
+      },
+    });
+    return result;
+  }
+  async findOneBooking(id: number) {
+    const results = await this.prisma.booking.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    return results;
   }
 
   async createBooking(dto: CreateBookingDto) {

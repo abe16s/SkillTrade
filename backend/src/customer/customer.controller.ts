@@ -1,4 +1,15 @@
-import { Controller, Param, Get, Patch, Body, UseGuards, ParseIntPipe, ValidationPipe, Req, ForbiddenException} from '@nestjs/common';
+import {
+  Controller,
+  Param,
+  Get,
+  Patch,
+  Body,
+  UseGuards,
+  ParseIntPipe,
+  ValidationPipe,
+  Req,
+  ForbiddenException,
+} from '@nestjs/common';
 import { CustomerService } from './customer.service';
 import { CustomerDto } from './dto/customer.dto';
 import { AuthGuard } from '@nestjs/passport';
@@ -7,7 +18,7 @@ import { Request } from 'express';
 
 @Controller('customer')
 export class CustomerController {
-  constructor(private readonly customerService: CustomerService) { }
+  constructor(private readonly customerService: CustomerService) {}
   @Get(':id')
   @UseGuards(AuthGuard('jwt'))
   findCustomerProfile(@Param('id', ParseIntPipe) id: number) {
@@ -23,7 +34,7 @@ export class CustomerController {
   ) {
     const user = request.user;
     if (id === (user as { sub: number }).sub) {
-      return this.customerService.updateCustomerProfile(id, profileUpdate)
+      return this.customerService.updateCustomerProfile(id, profileUpdate);
     } else {
       throw new ForbiddenException('Access denied to Unauthorized user');
     }

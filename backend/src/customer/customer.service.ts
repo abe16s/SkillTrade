@@ -15,16 +15,15 @@ export class CustomerService {
   }
 
   async updateCustomerProfile(customerId: number, profileUpdate: CustomerDto) {
-    try{
+    try {
       return await this.prisma.user.update({
         where: {
           id: customerId,
         },
         data: profileUpdate,
       });
-    }catch {
-      throw new NotFoundException('No user With the Specified Data')
+    } catch {
+      throw new NotFoundException('No user With the Specified Data');
     }
-    
   }
 }
